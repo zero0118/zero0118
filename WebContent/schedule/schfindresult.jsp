@@ -2,7 +2,34 @@
 <%@page import="com.kitware.schedule.vo.Schedule"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("utf-8");%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+<%-- el , jstl 문법 변경--%>    
+<c:set var="listSchedule" value="${requestScope.schedule}"/>
+{
+<c:if test="${!empty listSchedule}">
+	"schedule":[
+	<c:forEach items="${listSchedule}" var="item" varStatus="status">
+	<c:if test="${status.index !=0}">,</c:if>
+	{"title":"${item.sch_name}",
+	 "type":"${item.sch_type}",
+	 "startdate":"${item.sch_startdate}",
+	 "starthour":"${item.sch_starthour}",
+	 "startmin":"${item.sch_startmin}",
+	 "enddate":"${item.sch_enddate}",
+	 "endhour":"${item.sch_endhour}",
+	 "endmin":"${item.sch_endmin}",
+	 "contents":"${item.sch_contents}",
+	 "code":"${item.sch_code}"
+	}
+	</c:forEach>
+	]
+</c:if>
+}
+
+
+<%-- jsp 스크립틀릿 , 익스프레션 문법
+
 {
 <%List<Schedule> listSchedule = (List)request.getAttribute("schedule");
 if(listSchedule != null){
@@ -31,3 +58,4 @@ i++;
 }//end if
 %>
 }
+ --%>
