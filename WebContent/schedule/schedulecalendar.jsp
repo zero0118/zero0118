@@ -278,7 +278,7 @@ body {
 													    });
 												}else if(schTypeObj == '회사일정'){
 													$.ajax({
-													      url: '../schcompany.do',
+													      url: '../schcpn.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),

@@ -1,10 +1,10 @@
 <%@page import="java.util.List"%>
-<%@page import="com.kitware.schdule.vo.Schedule"%>
+<%@page import="com.kitware.schedule.vo.Schedule"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");%>
 {
-<%List<Schedule> listSchedule = (List)request.getAttribute("schdule");
+<%List<Schedule> listSchedule = (List)request.getAttribute("schedule");
 if(listSchedule != null){
 %>"schedule":[
 <%

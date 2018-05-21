@@ -9,30 +9,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kitware.A.control.Controller;
 import com.kitware.schedule.vo.Schedule;
+
 import com.kitware.schedule.service.SchCodeService;
 
-public class SchTotalController implements Controller {
-	
+public class SchPersonalController implements Controller {
 	private SchCodeService service;
 	
-	public SchTotalController() {
+	public SchPersonalController() {
+	}
+	
+	public SchPersonalController(SchCodeService service) { 
+		this.service = service;
 	}
 
 	public SchCodeService getService() {
 		return service;
 	}
 
+
 	public void setService(SchCodeService service) {
 		this.service = service;
 	}
 
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
 		try {
-			List<Schedule> listSchedule = service.findSchTotal("1");
+			List<Schedule> listSchedule = service.findSchPersonal("1");
 			request.setAttribute("schedule", listSchedule);
 		} catch (Exception e) {
 			request.setAttribute("error", e.getMessage());

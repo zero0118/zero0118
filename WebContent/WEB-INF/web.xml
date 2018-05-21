@@ -11,16 +11,16 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>FrontController</display-name>
-    <servlet-name>FrontController</servlet-name>
-    <servlet-class>com.kitware.servlet.control.FrontController</servlet-class>
+    <display-name>KitWareController</display-name>
+    <servlet-name>KitWareController</servlet-name>
+    <servlet-class>com.kitware.A.control.KitWareController</servlet-class>
     <init-param>
       <param-name>propLocation</param-name>
       <param-value>/WEB-INF/kitware.properties</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FrontController</servlet-name>
+    <servlet-name>KitWareController</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <filter>

@@ -57,7 +57,6 @@ public class KitWareController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
 		String path = request.getServletPath();
 		String forwardURL = "";
 		// my.properties 파일을 ㅇㄺ어서 Properties 객체화
@@ -118,12 +117,16 @@ public class KitWareController extends HttpServlet {
 			}
 			System.out.println(redirectURL);
 			response.sendRedirect(redirectURL);
-			// response.sendRedirect(request.getContextPath());
+			return;
+			//response.sendRedirect(request.getContextPath());
 		} else if (forwardURL == "") {
 			return;
 		} else {
+			System.out.println(forwardURL);
 			RequestDispatcher rd = request.getRequestDispatcher(forwardURL);
 			rd.forward(request, response);
 		}
+		
+		
 	}
 }
