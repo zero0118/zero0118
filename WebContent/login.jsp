@@ -10,25 +10,26 @@
     <meta name="author" content="">
 
     <title>KITWare </title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/metisMenu.min.css" rel="stylesheet">
-    <link href="css/sb-admin-2.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- JQuery 3.3.1 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/metisMenu.min.js"></script>
-    <script src="js/sb-admin-2.js"></script>
-	<!-- <script src="js/project9.js"></script> -->
+    
+    <!-- BootStrap 3.3.7 js CDN -->
+    <script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+	<script src="js/custom/sb-admin-2.js"></script>
 	
-<!-- <script>
-function fn_formSubmit(){
-	if ( ! chkInputValue("#userid", "아이디")) return false;
-	if ( ! chkInputValue("#userpw", "비밀번호")) return false;
 	
-	$("#form1").submit();
-}
-</script> -->
+	
+	<!-- BootStrap 3.3.7 css CDN -->
+    <link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="css/custom/sb-admin-2.css" rel="stylesheet">
+ 
+
 
 </head>
 
