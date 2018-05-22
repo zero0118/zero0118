@@ -24,6 +24,27 @@
 	<p>
 	<h2>전자결재</h2>
 	<h4>결재대기문서</h4>
+	
+	<table class="table table-border">
+	<tr>
+						<td>기안일</td>
+						<td>문서제목</td>
+						<td>문서번호</td>
+						<td>문서상태</td>
+						<td>문서 이름</td>
+					</tr>
+	<tr>
+								<td>${doc.start_date}</td>
+								<td>${doc.doc_title}</td>
+								<td>${doc.doc_num}</td>
+								<td>${doc.doc_state}</td>
+							<%--<td>${dockind.doc_name}</td> --%>
+					</tr>
+	</table>
+	
+					
+	
+	
 	<%-- <table class="table table-striped table-hover">
 		<thead>
 			<tr class="active">
@@ -54,6 +75,7 @@
 	<c:set var="result" value="${requestScope.result}" />
 	<%-- ${requestScope.docvo_list}
 	 ${result} --%>
+	 <h4>기안진행문서</h4>
 	 <table class="table table-border">
 					<tr>
 						<td>기안일</td>
@@ -77,110 +99,31 @@
 				</table>
 	
 <!-- 	아래껀 예전꺼 -->
-	<h4>기안진행문서</h4>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr class="active">
-				<th width="15%">기안일</th>
-				<th width="45%">제목</th>
-				<th width="10%">결재양식</th>
-				<th width="20%">문서번호</th>
-				<th width="10%">결재상태</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글1제목</a></td>
-				<td>기안서</td>
-				<td>1805-0001</td>
-				<td>진행중</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글2제목</a></td>
-				<td>기안서</td>
-				<td>1805-0002</td>
-				<td>완료</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글3제목</a></td>
-				<td>외근</td>
-				<td>1805-0003</td>
-				<td>진행중</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글4제목</a></td>
-				<td>병가</td>
-				<td>1805-0004</td>
-				<td>반려</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글5제목</a></td>
-				<td>기안서</td>
-				<td>1805-0005</td>
-				<td>진행중</td>
-			</tr>
-
-
-
-		</tbody>
-	</table>
+	
+	
 	<h4>완료 문서</h4>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr class="active">
-				<th width="15%">기안일</th>
-				<th width="45%">제목</th>
-				<th width="10%">결재양식</th>
-				<th width="20%">문서번호</th>
-				<th width="10%">결재상태</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글1제목</a></td>
-				<td>기안서</td>
-				<td>1805-0001</td>
-				<td>진행중</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글2제목</a></td>
-				<td>기안서</td>
-				<td>1805-0002</td>
-				<td>완료</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글3제목</a></td>
-				<td>외근</td>
-				<td>1805-0003</td>
-				<td>진행중</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글4제목</a></td>
-				<td>병가</td>
-				<td>1805-0004</td>
-				<td>반려</td>
-			</tr>
-			<tr>
-				<td>2018-05-11</td>
-				<td><a href="#">글5제목</a></td>
-				<td>기안서</td>
-				<td>1805-0005</td>
-				<td>진행중</td>
-			</tr>
-
-
-
-		</tbody>
-	</table>
+	<c:set var="list2" value="${requestScope.docvo_list2}" />
+		 <table class="table table-border">
+					<tr>
+						<td>기안일</td>
+						<td>문서제목</td>
+						<td>문서번호</td>
+						<td>문서상태</td>
+						<td>문서 이름</td>
+					</tr>
+					
+					<c:forEach var="doc2" items="${list2}">
+					<%--  	 <c:set var="dockind" value="${requestScope.docvo_list.kindlist}"/> --%>
+					<tr>
+								<td>${doc2.start_date}</td>
+								<td>${doc2.doc_title}</td>
+								<td>${doc2.doc_num}</td>
+								<td>${doc2.doc_state}</td>
+								<%-- <td>${dockind.doc_name}</td> --%>
+					</tr>
+					</c:forEach>
+					
+				</table>
 
 
 </div>

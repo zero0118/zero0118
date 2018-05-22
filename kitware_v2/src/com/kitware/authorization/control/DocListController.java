@@ -42,6 +42,10 @@ public class DocListController implements Controller {
 			System.out.println("docvo_list size:"+docvo_list.size());
 			request.setAttribute("docvo_list", docvo_list);
 			
+			List<DocVO> docvo_list2 = service.findOk("kim"); //id 들어가야함 지금은 임시값 kim
+			System.out.println("docvo_list size2:"+docvo_list2.size());
+			request.setAttribute("docvo_list2", docvo_list2);
+			
 		} catch (Exception e) {
 			request.setAttribute("result", e.getMessage());
 			e.printStackTrace();
