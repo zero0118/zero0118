@@ -58,9 +58,19 @@
 						 'pwd':$('input[name=userpw]').val()
 						},
 					method:'POST',
-					url: 'test.jsp',
+					url: 'login.do',
 					success: function(data){	
-						alert('로그인성공');
+						var logindata = data.trim();
+						if(logindata == '1'){
+							alert("로그인성공");
+							location.href="${pageContext.request.contextPath}/index.jsp";
+
+						}else if(logindata == '-1'){
+							window.alert('로그인 실패');
+						}else{
+							alert(logindata);
+						}
+	
 					}
 				});
 				
