@@ -118,7 +118,7 @@
 								<td>${doc2.start_date}</td>
 								<td>${doc2.doc_title}</td>
 								<td>${doc2.doc_num}</td>
-								<td>${doc2.doc_state}</td>
+								<%-- <td>${doc2.doc_state}</td> --%>
 								<%-- <td>${dockind.doc_name}</td> --%>
 					</tr>
 					</c:forEach>

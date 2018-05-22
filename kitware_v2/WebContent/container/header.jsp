@@ -65,22 +65,23 @@
 			/* $('div#page-wrapper').html('');*/// 받아온 className이  ~~라면 switch case문 실행.
 			switch (className) { // 받아온 className이  ~~라면 switch case문 실행.
 			case 'home': // 일정관리 tab 눌렀을 때 
-				location.href='../home/home.jsp';
+				location.href = '../home/home.jsp';
 				break;
 			case 'schedule': // 일정관리 tab 눌렀을 때 
-				location.href='../schedule/schedulecalendar.jsp?list=개인일정';
+				location.href = '../schedule/schedulecalendar.jsp?list=개인일정';
 				break;
 			case 'board': // 일정관리 tab 눌렀을 때 
-				location.href="../board/board.jsp";
+				location.href = "../board/board.jsp";
 				break;
 			case 'attendance': // 일정관리 tab 눌렀을 때 
-					location.href="../attendance/mymonth.jsp";
-					break;
-			case 'authorization': // 일정관리 tab 눌렀을 때 
-					location.href="../authorization/approveMain.jsp";
-					break;
-			} 
-			
+				location.href = "../attendance/mymonth.jsp";
+				break;
+			case 'authorization': { // 일정관리 tab 눌렀을 때 
+				//location.href="../authorization/approveMain.jsp";
+				location.href="../doclist.do";
+			}
+				break;
+			}
 
 			$(this).addClass('active');
 
@@ -89,17 +90,17 @@
 		//왼쪽 side-menu bar 눌렀을 때
 		$('ul#side-menu>li.schedule a').click(function() {
 			var list = $(this).text();
-			location.href="../schedule/schedulecalendar.jsp?list="+list;
+			location.href = "../schedule/schedulecalendar.jsp?list=" + list;
 		});
 		$('.nav>li.gian').click(function() {
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
 				url : '../doclist.do',
-				success : function(data) {
-					$('div#page-wrapper').empty();
-					$('div#page-wrapper').html(data);
-				}
+			/* success : function(data) {
+				$('div#page-wrapper').empty();
+				$('div#page-wrapper').html(data);
+			} */
 			});
 		});
 		$('.nav>li.balju').click(function() {
@@ -252,14 +253,17 @@ div.page-wrapper {
 						<li class="schedule"><a href="#">개인일정</a> <a href="#">부서일정</a>
 							<a href="#">회사일정</a> <a href="#">전체일정</a></li>
 
-						<li class="attendance"><a href="#">내 근태 현황<span class="fa arrow"></span></a>
+						<li class="attendance"><a href="#">내 근태 현황<span
+								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li class="mymonth"><a href="../attendance/attendance.jsp">월간 현황</a></li>
-								<li class="myyear"><a href="../attendance/myyear.jsp">연간 현황</a></li>
-							</ul>
-						</li>
-						<li class="attendance"><a href="../attendance/myyeoncha.jsp">내 연차 현황</a></li>
-						
+								<li class="mymonth"><a href="../attendance/attendance.jsp">월간
+										현황</a></li>
+								<li class="myyear"><a href="../attendance/myyear.jsp">연간
+										현황</a></li>
+							</ul></li>
+						<li class="attendance"><a href="../attendance/myyeoncha.jsp">내
+								연차 현황</a></li>
+
 						<li class="board"><a href="#">게시판<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="#">공지사항</a></li>
