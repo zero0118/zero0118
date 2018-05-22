@@ -4,17 +4,17 @@
 참여자 : 5명
 개발기간 :4주
 
-## 개발 기술
+### 개발 기술
 Java, Servlet, JSP, JQuery, Ajax, JSON, JavaScript, CSS3, HTML5
 
-## DBMS
+### DBMS
 Oracle 11g
 
-## Was
+### Was
 Apache Tomcat 8.5
 
-## IDE
+### IDE
 Eclipse Java EE IDE WebDeveloper(Oxyzen)
 
-## Design Pattern
+### Design Pattern
 MVC model 2, Singleton Pattern
