@@ -81,7 +81,7 @@
 					location.href="${pageContext.request.contextPath}/attendance/mymonth.jsp";
 					break;
 			case 'authorization': // 일정관리 tab 눌렀을 때 
-					location.href="${pageContext.request.contextPath}/authorization/docwrite.jsp";
+					location.href="${pageContext.request.contextPath}/authorization/approveMain.jsp";
 					break;
 			case 'home' :
 				location.href='${pageContext.request.contextPath}/home/home.jsp';

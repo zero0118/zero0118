@@ -80,7 +80,7 @@ public class KitWareController extends HttpServlet {
 						m.invoke(obj, schdmlService);
 					} else if ((packPath + "authorization.service.DocManipulService").equals(parameterType.getName())) {
 						m.invoke(obj, docmanipulService);
-					} else if ((packPath + "authorization.service.docselectService").equals(parameterType.getName())) {
+					} else if ((packPath + "authorization.service.DocSelectService").equals(parameterType.getName())) {
 						m.invoke(obj, docselectService);
 					} else if ((packPath + "guntae.service.GTService").equals(parameterType.getName())) {
 						m.invoke(obj, gtService);
