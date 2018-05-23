@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kitware.authorization.service.DocManipulService;
 import com.kitware.authorization.service.DocSelectService;
@@ -63,6 +64,7 @@ public class KitWareController extends HttpServlet {
 
 		String key = path;
 		String className = env.getProperty(key);
+		System.out.println(className);
 		// 클래스이름(eg:ProductListContoller)으로,
 		// ProductListControllerclass을 찾아 JVM으로 로드!
 		try {
@@ -109,7 +111,14 @@ public class KitWareController extends HttpServlet {
 			e.printStackTrace();
 		}
 		// forwardURL = c.execute(request, response);
-
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginInfo")==null) {
+			//샌드리다이레긑.
+		}else {
+			
+			
+		}
+			
 		if (forwardURL.contains("redirect:")) {
 			String redirectURL = forwardURL.substring(forwardURL.indexOf(":") + 1);
 			if (redirectURL.equals("")) {

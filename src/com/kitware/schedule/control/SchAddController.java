@@ -5,8 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kitware.A.control.Controller;
+import com.kitware.member.vo.Members;
 import com.kitware.schedule.vo.Schedule;
 import com.kitware.schedule.service.SchDMLService;
 
@@ -26,15 +28,18 @@ public class SchAddController implements Controller {
 		this.service = service;
 	}
 
-
-
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		//로그인 세션값 가져오기.
+		HttpSession session = request.getSession();
+		Members loginInfo = (Members)session.getAttribute("loginInfo");	
+		String emp_num = loginInfo.getEmp_num();
+		
+
 		String title= request.getParameter("title");
-		String schsp= request.getParameter("schsp");
+		String schsp= request.getParameter("schtype");
 		String startdate= request.getParameter("startdate");
 		String starthour= request.getParameter("starthour");
 		String startminute= request.getParameter("startminute");
@@ -43,8 +48,13 @@ public class SchAddController implements Controller {
 		String endminute= request.getParameter("endminute");
 		String repeatbl=request.getParameter("repeatbl");
 		String repeatterm=request.getParameter("repeatterm");
+		String week=request.getParameter("week");
 		String contents=request.getParameter("contents");
+		String schcode=request.getParameter("schcode");
+		
 		Schedule schedule = new Schedule();
+		
+		schedule.setEmp_num(emp_num);
 		schedule.setSch_name(title);
 		schedule.setSch_type(schsp);
 		schedule.setSch_startdate(startdate);
@@ -56,8 +66,11 @@ public class SchAddController implements Controller {
 		schedule.setSch_repeat(repeatbl);
 		schedule.setSch_repeatcycle(repeatterm);
 		schedule.setSch_contents(contents);
+		schedule.setSch_code(schcode);
 		
-		try {
+		System.out.println(schedule);
+		return null;
+		/*try {
 			service.scheduleinput(schedule);
 			request.setAttribute("result", 1);
 		}catch(Exception e) {
@@ -65,7 +78,7 @@ public class SchAddController implements Controller {
 			request.setAttribute("result", -1);
 		}
 		String forwardURL = "scheduleaddresult.jsp";
-		return forwardURL;
+		return forwardURL;*/
 	}
 
 }
