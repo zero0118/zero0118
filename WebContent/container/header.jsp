@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String root = "/kitware_50101526/WebContent/";
 %>
@@ -59,29 +60,36 @@
 
 			//모든 li의  active class를 전부 지우고 현재 클릭한 곳만 active 시킨다.
 			$('div#menutab li').removeClass('active');
+			
 			var className = $(this).attr('class');
 			//선택된 li와 동일한 class이름을 가진  sidemenu 불러온다.
+			console.log(className);
 			$('ul#side-menu').find('li.' + className).show();
-			/* $('div#page-wrapper').html('');*/// 받아온 className이  ~~라면 switch case문 실행.
-			switch (className) { // 받아온 className이  ~~라면 switch case문 실행.
-			case 'schedule': // 일정관리 tab 눌렀을 때 
-				location.href='../schedule/schedulecalendar.jsp?list=개인일정';
-				break;
-			case 'board': // 일정관리 tab 눌렀을 때 
-				location.href="../board/board.jsp";
-				break;
-			case 'attendance': // 일정관리 tab 눌렀을 때 
-					location.href="../attendance/mymonth.jsp";
-					break;
-			case 'authorization': // 일정관리 tab 눌렀을 때 
-					location.href="../authorization/docwrite.jsp";
-					break;
-			} 
 			
 
-
+			
+			/* $('div#page-wrapper').html('');*/// 받아온 className이  ~~라면 switch case문 실행.
+			switch (className) { // 받아온 className이  ~~라면 switch case문 실행.
+			
+			case 'schedule': // 일정관리 tab 눌렀을 때 
+				location.href='${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인일정';
+				break;
+			case 'board': // 일정관리 tab 눌렀을 때 
+				location.href="${pageContext.request.contextPath}/board/board.jsp";
+				break;
+			case 'attendance': // 일정관리 tab 눌렀을 때 
+					location.href="${pageContext.request.contextPath}/attendance/mymonth.jsp";
+					break;
+			case 'authorization': // 일정관리 tab 눌렀을 때 
+					location.href="${pageContext.request.contextPath}/authorization/approveMain.jsp";
+					break;
+			case 'home' :
+				location.href='${pageContext.request.contextPath}/home/home.jsp';
+				break;
+			} 
+			
 			$(this).addClass('active');
-
+			
 		});
 
 		//왼쪽 side-menu bar 눌렀을 때
@@ -144,6 +152,13 @@
 				}
 			});
 		});
+		
+		
+		//로그아웃 버튼 누른다.
+		$('div.navbar-header>a.logout').click(function(){
+			location.href="../logout.do";
+		});
+		
 	});
 </script>
 
@@ -175,7 +190,15 @@ ul#side-menu>li { /*처음에 sidebar menu 전부다 display none 시킨다.*/
 }
 
 div.page-wrapper {
-	padding-top: 30px;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+div.navbar-header> div.logininfo{
+	padding: 18px;
+	float:right;
+}
+div.navbar-header> a.logout{
+	float:right;
 }
 </style>
 </head>
@@ -185,20 +208,17 @@ div.page-wrapper {
 		<nav class="navbar navbar-default navbar-static-top"
 			style="margin-bottom: 0">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.jsp">KIT Ware</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/home/home.jsp">KIT Ware</a>
+				<a class="navbar-brand logout" href="#">Logout</a>
+				<div class="logininfo">${sessionScope.loginInfo.name} ${sessionScope.loginInfo.gradeinfo[0].position_name} 님 로그인 되었습니다.</div>
 			</div>
 			<!-- /.navbar-header -->
 
 			<div id="menutab" class="navbar-top-links">
 				<ul class="nav nav-tabs">
-					<li class="home active"><a href="index.jsp">HOME</a></li>
 					<!-- active 옵션 -->
+					<li class="home"><a href="#" data-toggle="tab"><i
+							class="fas fa-home"></i>HOME</a></li>
 					<li class="authorization"><a href="#1" data-toggle="tab"><i
 							class="fa fa-edit fa-fw"></i>전자결재</a></li>
 					<li class="schedule"><a href="#2" data-toggle="tab"><i
@@ -245,6 +265,7 @@ div.page-wrapper {
 								<li class="jotae"><a href="../authorization/jotae.jsp">조퇴신청</a></li>
 								<li class="balju"><a href="../authorization/balju.jsp">발주신청</a></li>
 							</ul></li>
+						
 						<li class="schedule"><a href="#">개인일정</a> <a href="#">부서일정</a>
 							<a href="#">회사일정</a> <a href="#">전체일정</a></li>
 
@@ -262,6 +283,7 @@ div.page-wrapper {
 								<li><a href="#">부서공지</a></li>
 
 							</ul></li>
+							
 					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->

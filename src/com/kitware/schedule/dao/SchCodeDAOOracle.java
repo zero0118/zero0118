@@ -25,13 +25,14 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 									"       to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin, sch_repeat , sch_repeatcycle , sch_contents,\r\n" + 
 									"       sch_code,sch_useyn\r\n" + 
 									"from sch_schedule\r\n" + 
-									"where emp_num = '1'\r\n" + 
+									"where emp_num = ? " + 
 									"and sch_useyn = 'N'";
 		List<Schedule> listSchedule = new ArrayList<>();
 		
 		try {
 			con = com.kitware.sql.MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectPersonalSQL);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
@@ -61,13 +62,14 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 								"and m.dept_num = (select di.dept_num\r\n" + 
 								"                  from members m, dept_info di\r\n" + 
 								"                  where m.dept_num=di.dept_num\r\n" + 
-								"                  and m.emp_num='1')\r\n" + 
+								"                  and m.emp_num=?)\r\n" + 
 								"and sc.sch_useyn = 'N'";
 		List<Schedule> listSchedule = new ArrayList<>();
 		
 		try {
 			con = com.kitware.sql.MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectDeptlSQL);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
@@ -123,7 +125,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		String selectTotalSQL = "(select sch_no, emp_num,sch_name,sch_type, to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
 								"       to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin , sch_repeat,sch_repeatcycle,sch_contents,sch_code,sch_useyn\r\n" + 
 								"from sch_schedule\r\n" + 
-								"where emp_num = '1'\r\n" + 
+								"where emp_num = ? " + 
 								"and sch_useyn = 'N')\r\n" + 
 								"union\r\n" + 
 								"(SELECT sch_no, sc.emp_num,sch_name,sch_type, to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
@@ -134,7 +136,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 								"and m.dept_num = (select di.dept_num\r\n" + 
 								"                  from members m, dept_info di\r\n" + 
 								"                  where m.dept_num=di.dept_num\r\n" + 
-								"                  and m.emp_num='1')\r\n" + 
+								"                  and m.emp_num=?)\r\n" + 
 								"and sch_useyn = 'N')\r\n" + 
 								"union                  \r\n" + 
 								"(select sch_no, emp_num,sch_name,sch_type, to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
@@ -147,6 +149,8 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		try {
 			con = com.kitware.sql.MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectTotalSQL);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
@@ -162,6 +166,5 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		}
 	}
 
-	
 }
 

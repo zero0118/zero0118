@@ -65,6 +65,7 @@ div.hover:hover {
 				<h1>KIT-WARE</h1>
 			</div>
 			<br> <br> <br> <br> <br> <br> <br>
+			<div class="hover effect1" id="home">HOME</div>
 			<div class="hover effect1" id="attendance">근태관리</div>
 			<div class="hover effect1" id="authorization">전자결재</div>
 			<div class="hover effect1" id="schedule">일정관리</div>

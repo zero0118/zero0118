@@ -9,6 +9,7 @@
 <script>
 	$(function() {
 		var className = '<%=request.getParameter("page")%>';
+		
 		if(className=='schedule'){
 			location.href="schedule/schedulecalendar.jsp?list=개인일정";
 		}else{

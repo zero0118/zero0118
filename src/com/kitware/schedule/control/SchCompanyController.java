@@ -6,8 +6,10 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kitware.A.control.Controller;
+import com.kitware.member.vo.Members;
 import com.kitware.schedule.vo.Schedule;
 import com.kitware.schedule.service.SchCodeService;
 
@@ -33,8 +35,11 @@ public class SchCompanyController implements Controller {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session = request.getSession();
+		Members loginInfo = (Members)session.getAttribute("loginInfo");	
+		String emp_num = loginInfo.getEmp_num();
 		try {
-			List<Schedule> listSchedule = service.findSchCompany("1");
+			List<Schedule> listSchedule = service.findSchCompany(emp_num);
 			request.setAttribute("schedule", listSchedule);
 		} catch (Exception e) {
 			request.setAttribute("error", e.getMessage());
