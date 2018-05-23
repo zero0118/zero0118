@@ -26,7 +26,7 @@ public class DocDAOOracle implements DocDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String selectIngSQL = "select d.start_date, dk.doc_name, d.doc_title, d.doc_num, d.doc_state"
+		String selectIngSQL = "select d.start_date, d.doc_kind, d.doc_title, d.doc_num, d.doc_state, dk.doc_name"
 							+" from document d, doc_kind dk, members m"
 							+" where d.doc_kind = dk.doc_kind"
 							+" and m.id = ?";
@@ -43,11 +43,11 @@ public class DocDAOOracle implements DocDAO {
 		while(rs.next()) {
 			docvo = new DocVO();
 			docvo.setStart_date(rs.getString("start_date"));
+			docvo.setDoc_kind(rs.getInt("doc_kind"));
 			docvo.setDoc_title(rs.getString("doc_title"));
 			docvo.setDoc_num(rs.getString("doc_num"));
 			docvo.setDoc_state(rs.getString("doc_state"));
-			DocKindVO dock = new DocKindVO();
-			dock.setDoc_name(rs.getString("doc_name"));
+			DocKindVO dock = new DocKindVO(docvo.getDoc_kind(),rs.getString("doc_name"));
 			kindlist.add(dock);
 			docvo.setDoc_kindvo(kindlist);
 			doclist.add(docvo);	
@@ -88,7 +88,7 @@ public class DocDAOOracle implements DocDAO {
 				docvo2.setDoc_title(rs.getString("doc_title"));
 				docvo2.setDoc_num(rs.getString("doc_num"));
 				docvo2.setDoc_state(rs.getString("doc_state"));
-				dock2.setDoc_name(rs.getString("doc_name"));
+				dock2 = new DocKindVO(docvo2.getDoc_kind(),rs.getString("doc_name"));
 				kindlist2.add(dock2);
 				docvo2.setDoc_kindvo(kindlist2);
 				doclist2.add(docvo2);	
