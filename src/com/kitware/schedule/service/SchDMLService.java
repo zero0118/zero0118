@@ -19,8 +19,7 @@ public class SchDMLService {
 		return service;
 	}
 	
-	public String scheduleinput(Schedule schedule) throws Exception{
-		//1 , -1 return
-		return dao.insertSchedule(schedule);
+	public void scheduleinput(Schedule schedule) throws Exception{
+		dao.insertSchedule(schedule);
 	}
 }

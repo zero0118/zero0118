@@ -11,7 +11,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 <style>
+
 div>.date {
 	width: 130px;
 }
@@ -41,6 +45,7 @@ select.sp {
 		
 		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
 		var codeStringObj = $('div.articleTop>i').text();
+		console.log(codeStringObj);
 		var codeIntObj;
 		if(codeStringObj =='개인일정'){
 			codeIntObj = '0';
@@ -65,19 +70,16 @@ select.sp {
 
 		$('input:radio[name=repeatbl]').change(function() {
 			var radioValue = $(this).val();
-			if (radioValue == "2") {
+			if (radioValue == "Y") {
 				$('#repeatok').show();
-			} else if (radioValue == "1") {
+			} else if (radioValue == "N") {
 				$('#repeatok').hide();
 			}
 
 		});
 		$('input:radio[name=repeatterm]').change(function() {
 			var radioValue = $(this).val();
-			if (radioValue == "1" ) {
-				$('#dayinput').show();	
-				$('#weekcheck').hide();			
-			} else if(radioValue =="2" ){
+			if(radioValue =="1" ){
 				$('#weekcheck').show();
 				$('#dayinput').hide();	
 			}else{
@@ -93,16 +95,20 @@ select.sp {
 				  method:'post',
 				  data:$('form').serialize(),
 				  success:function(data){
-					  /* data = data.trim();
-					  if(data == '1'){ //글쓰기 성공
-						  alert('글쓰기 성공');
+					  if(data.trim() == '1'){ //일정추가 성공
+					  	  var $triggerObj = $("li.schedule>a#schperson");
+					  		$('#myModal').modal('toggle');
+					  	  //$triggerObj.trigger('click');
+					  	  
+					  /* 
 						 var $triggerObj = $("nav>ul li.board");
-						 $triggerObj.trigger('click');
-					  }else if(data == '-1'){ //글쓰기 실패
-						 alert('글쓰기 실패'); 
-					  } */
+						 $triggerObj.trigger('click'); */
+					  }else if(data.trim() == '-1'){ //일정추가 실패
+						 alert('일정추가 실패'); 
+					  }
 				  }
 			  });
+			  
 			  return false;
 		  });
 
@@ -121,9 +127,9 @@ select.sp {
 	</div>
 
 
-	<form id="addsc">
+	
 	<div class="modal-body">
-
+		<form id="addsc">
 		<table>
 			<tr>
 				<td><label>제목 </label></td>
@@ -325,11 +331,11 @@ select.sp {
 						<option>59</option>
 				</select> <label>분</label></td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td><label>반복여부</label></td>
-				<td><input type="radio" name="repeatbl" value="1"
+				<td><input type="radio" name="repeatbl" value="N"
 					checked="checked">비반복 <input type="radio" name="repeatbl"
-					value="2">반복</td>
+					value="Y">반복</td>
 			</tr>
 
 			<tr style="display: none" id="repeatok">
@@ -363,11 +369,12 @@ select.sp {
 		</table>
 		<div class="modal-footer">
 		
-			<input type="submit" value="추가" class="btn btn-default addschedule" >
+			<input type="submit" value="추가" class="btn btn-default addschedule">
 			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 		</div>
+		</form>
 		</div>
-	</form>
+
 
 	
 

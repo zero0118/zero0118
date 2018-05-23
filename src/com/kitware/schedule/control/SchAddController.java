@@ -68,17 +68,19 @@ public class SchAddController implements Controller {
 		schedule.setSch_contents(contents);
 		schedule.setSch_code(schcode);
 		
+		String contextPath = request.getContextPath();
 		System.out.println(schedule);
-		return null;
-		/*try {
+		
+		try {
 			service.scheduleinput(schedule);
-			request.setAttribute("result", 1);
-		}catch(Exception e) {
+			request.setAttribute("result", "1");
+		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("result", -1);
+			request.setAttribute("result", "-1"); //시스템상 에러
 		}
-		String forwardURL = "scheduleaddresult.jsp";
-		return forwardURL;*/
+		String forwardURL = "/schedule/scheduleaddresult.jsp";
+		return forwardURL;
+			
 	}
 
 }

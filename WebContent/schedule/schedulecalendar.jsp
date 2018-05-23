@@ -41,7 +41,7 @@ body {
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<!-- Content will be loaded here from "scheduleform1.html" file -->
+				
 			</div>
 		</div>
 
@@ -57,6 +57,10 @@ body {
 	$(function(){
 		<%String listText = (String) request.getParameter("list").trim();%>  <!-- 받아온 listText는 개인일정,부서일정 ~~이라는 TEXT -->
 		$('div.articleTop >i').text('<%=listText%>');
+		if('<%=listText%>' == '전체일정'){
+			$("#add").hide();
+		}
+		
 		$("#print").click(function() {
 			window.print();
 		});
@@ -194,7 +198,9 @@ body {
 										    },
 
 										    /* 모든 일정들 */
-											events: function(start, end, timezone, callback) {
+											events: 
+												
+												function(start, end, timezone, callback) {
 												  var schTypeObj = $('div.articleTop >i').text();
 												  if(schTypeObj =='개인일정'){ /* 개인일정 눌렀을 때는 개인일정만 뜰 수 있도록 설정 */
 												    $.ajax({
@@ -258,6 +264,7 @@ body {
 															            title: sc.title,
 															            start: sc.startdate,
 															            color : "#ff9000",
+															            
 															            description: "[일정상세]  "+contents
 														         	 });
 													        	}else{
