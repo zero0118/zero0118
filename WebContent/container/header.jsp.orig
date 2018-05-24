@@ -38,16 +38,27 @@
 <!-- Custom Theme JavaScript -->
 <script src="../js/custom/sb-admin-2.js"></script>
 
-<!-- include summernote css/js 추가두줄-->
+<<<<<<< HEAD
+<!-- include summernote css/js 윤지추가두줄-->
 <script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
 <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote.css">
+=======
+<!-- include summernote css/js 추가두줄-->
+<script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../summernote/summernote.css">
+>>>>>>> origin/yunjey
 <link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/js/fullcalendar/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/js/fullcalendar/fullcalendar.min.js'></script>
+<<<<<<< HEAD
 <script type=text/javascript src='${pageContext.request.contextPath}/js/fullcalendar/locale/ko.js'></script>
+=======
+<script type=text/javascript src='../js/fullcalendar/locale/ko.js'></script>
+>>>>>>> origin/yunjey
 <script src='${pageContext.request.contextPath}/js/fullcalendar/theme-chooser.js'></script>
 <script src='${pageContext.request.contextPath}/js/fullcalendar/gcal.js'></script>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css'

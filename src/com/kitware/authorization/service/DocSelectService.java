@@ -8,15 +8,23 @@ import com.kitware.authorization.vo.DocVO;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class DocSelectService {
-	
+
 	static private DocSelectService service;
 	private DocDAO dao = new DocDAOOracle();
 	
-	public List<DocVO> findIng(String id) throws Exception{
+	public int findCount() throws Exception{
+		return dao.selectCount();
+	}
+
+	public List<DocVO> findIng(String id) throws Exception {
 		System.out.println(dao.selectIng("kim"));
 		return dao.selectIng("kim");
 	}
-	public List<DocVO> findOk(String id) throws Exception{
+	public List<DocVO> findIng(String id, int page) throws Exception{
+		return dao.selectIng("kim", page);
+	}
+
+	public List<DocVO> findOk(String id) throws Exception {
 		return dao.selectOk("kim");
 	}
 

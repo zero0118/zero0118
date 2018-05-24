@@ -38,39 +38,11 @@
 								<td>${doc.doc_title}</td>
 								<td>${doc.doc_num}</td>
 								<td>${doc.doc_state}</td>
-							<%--<td>${dockind.doc_name}</td> --%>
+							<%-- <td>${doc.doc_kindvo.doc_name}</td> --%>
 					</tr>
 	</table>
 	
 					
-	
-	
-	<%-- <table class="table table-striped table-hover">
-		<thead>
-			<tr class="active">
-				<th width="15%" class="gian_day">기안일</th>
-				<th width="45%" class="title">제목</th>
-				<th width="10%" class="yangsik">결재양식</th>
-				<th width="20%" class="doc_num">문서번호</th>
-				<th width="10%" class="status">결재상태</th>
-			</tr>
-		</thead>
-	</tbody>
-	</table>
-	<table>
-	<c:set var="list" value="${requestScope.docvo_list}"/>
-		<c:forEach var="doclist" items="${list}">
-		<tr>
-				<td>${list.start_date}</td>
-				<td>${list.doc_title}</td>
-				<td>${list.doc_name}</td>
-				<td>${list.doc_num}</td>
-				<td>${list.doc_state}</td>
-			</tr>
-			<!-- 이 안에 들어간게 출력이 안됨 -->
-		</c:forEach>
-		</table>
-	 --%>
 	<c:set var="list" value="${requestScope.docvo_list}" />
 	<c:set var="result" value="${requestScope.result}" />
 	<%-- ${requestScope.docvo_list}
@@ -86,16 +58,19 @@
 					</tr>
 					
 					<c:forEach var="doc" items="${list}">
-					<%-- 	 <c:set var="dockind" value="${docvo_list.kindlist}" />  --%>
 					<tr>
 								<td>${doc.start_date}</td>
 								<td>${doc.doc_title}</td>
 								<td>${doc.doc_num}</td>
 								<td>${doc.doc_state}</td>
-							<%--<td>${dockind.doc_name}</td> --%>
+								<%-- </tr>
+								<c:forEach var="doc2" items ="${doc.doc_kindvo}">
+								
+								<td>${doc2.doc_name}</td>
+								
+								</c:forEach> --%>
 					</tr>
-					</c:forEach>
-					
+				</c:forEach>
 				</table>
 	
 <!-- 	아래껀 예전꺼 -->
@@ -118,7 +93,7 @@
 								<td>${doc2.start_date}</td>
 								<td>${doc2.doc_title}</td>
 								<td>${doc2.doc_num}</td>
-								<%-- <td>${doc2.doc_state}</td> --%>
+							    <td>${doc2.doc_state}</td>
 								<%-- <td>${dockind.doc_name}</td> --%>
 					</tr>
 					</c:forEach>
