@@ -1,139 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- datepicker js CDN-->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-<style>
-
-div>.date {
-	width: 130px;
-}
-
-.text {
-	width: 450px;
-	height: 170px;
-}
-
-td {
-	padding: 10px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-select.sp {
-	width: 100px;
-	height: 25px;
-}
-#testDatepicker , #testDatepicker2{
-	padding-bottom: 5px;
-}
-</style>
-<script type="text/javascript">
-
-	$(function() {
-		
-		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
-		var codeStringObj = $('div.articleTop>i').text();
-		console.log(codeStringObj);
-		var codeIntObj;
-		if(codeStringObj =='개인일정'){
-			codeIntObj = '0';
-		}else if(codeStringObj =='부서일정'){
-			codeIntObj = '1';
-		}else if(codeStringObj =='회사일정'){
-			codeIntObj = '2';
-		}
-		$('#code').val(codeIntObj);
-		
-		
-		
-		$("#testDatepicker").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-		$("#testDatepicker2").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-
-
-		$('input:radio[name=repeatbl]').change(function() {
-			var radioValue = $(this).val();
-			if (radioValue == "Y") {
-				$('#repeatok').show();
-			} else if (radioValue == "N") {
-				$('#repeatok').hide();
-			}
-
-		});
-		$('input:radio[name=repeatterm]').change(function() {
-			var radioValue = $(this).val();
-			if(radioValue =="1" ){
-				$('#weekcheck').show();
-				$('#dayinput').hide();	
-			}else{
-				$('#dayinput').hide();
-				$('#weekcheck').hide();
-				
-			}
-			
-		});
-		  $('form#addsc').submit(function(){
-			  $.ajax({
-				  url:'${pageContext.request.contextPath}/schadd.do',
-				  method:'post',
-				  data:$('form').serialize(),
-				  success:function(data){
-					  if(data.trim() == '1'){ //일정추가 성공
-					  	  var $triggerObj = $("li.schedule>a#schperson");
-					  		$('#myModal').modal('toggle');
-					  	  //$triggerObj.trigger('click');
-					  	  
-					  /* 
-						 var $triggerObj = $("nav>ul li.board");
-						 $triggerObj.trigger('click'); */
-					  }else if(data.trim() == '-1'){ //일정추가 실패
-						 alert('일정추가 실패'); 
-					  }
-				  }
-			  });
-			  
-			  return false;
-		  });
-
-
-	});
-</script>
-<!-- datepicker css -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-	type="text/css" />
-</head>
-<body>
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">x</button>
-		<h4>일정추가</h4>
-	</div>
-
-
-	
-	<div class="modal-body">
+    pageEncoding="UTF-8"%>
+<div class="modal-body">
 		<form id="addsc">
 		<table>
 			<tr>
 				<td><label>제목 </label></td>
-				<td><input style="width: 300px" name="title"></td>
+				<td><input style="width: 300px" name="title" autocomplete="off"></td>
 			</tr>
 			<tr>
 				<td><label>일정종류</label></td>
@@ -359,11 +231,10 @@ select.sp {
 				<input	type="checkbox" name="week" id="week7" value="7"><label for="week7">일</label>
 				</span>
 
-				
 			</tr>
 			<tr>
 				<td><label>내용</label></td>
-				<td><textarea name="contents" rows="6" cols="50"></textarea></td>
+				<td><textarea autocomplete="off" name="contents" rows="6" cols="50"></textarea></td>
 				<td><input id="code" type="hidden" name="schcode" ></td>
 			</tr>
 		</table>
@@ -374,10 +245,3 @@ select.sp {
 		</div>
 		</form>
 		</div>
-
-
-	
-
-
-</body>
-</html>

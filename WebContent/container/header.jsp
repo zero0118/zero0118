@@ -39,19 +39,25 @@
 <script src="../js/custom/sb-admin-2.js"></script>
 
 <!-- include summernote css/js 윤지추가두줄-->
-<script src="../summernote/summernote.js"></script>
-<script src="../summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../summernote/summernote.css">
-<link href='../css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-<link href='../css/fullcalendar/fullcalendar.print.min.css'
+<script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
+<script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote.css">
+<link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
-<script src='../js/fullcalendar/moment.min.js'></script>
-<script src='../js/fullcalendar/fullcalendar.min.js'></script>
-<script type=text/javascript src='../js/fullcalendar/locale/ko.js'></script>
-<script src='../js/fullcalendar/theme-chooser.js'></script>
-<script src='../js/fullcalendar/gcal.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/moment.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/fullcalendar.min.js'></script>
+<script type=text/javascript src='${pageContext.request.contextPath}/js/fullcalendar/locale/ko.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/theme-chooser.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/gcal.js'></script>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css'
 	rel='stylesheet'>
+<!-- datepicker js CDN-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+	
+	
 <script>
 	$(function() {
 		$('div#menutab li').click(function() { //상단의 메뉴 버튼을 눌렀을 때 버튼에 따라  1.side menu 변경 , 2.해당 li태그 active 속성. 순서가 중요.
@@ -156,7 +162,7 @@
 		
 		//로그아웃 버튼 누른다.
 		$('div.navbar-header>a.logout').click(function(){
-			location.href="../logout.do";
+			location.href="${pageContext.request.contextPath}/logout.do";
 		});
 		
 	});
@@ -176,14 +182,20 @@
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../css/custom/sb-admin-2.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/custom/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../css/font-awesome/font-awesome.min.css" rel="stylesheet"
+<link href="${pageContext.request.contextPath}/css/font-awesome/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
+<!-- datepicker css -->
+		<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+		type="text/css" />		
+	
+	
 <style>
 ul#side-menu>li { /*처음에 sidebar menu 전부다 display none 시킨다.*/
 	display: none;

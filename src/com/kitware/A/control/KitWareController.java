@@ -111,13 +111,7 @@ public class KitWareController extends HttpServlet {
 			e.printStackTrace();
 		}
 		// forwardURL = c.execute(request, response);
-		HttpSession session = request.getSession();
-		if(session.getAttribute("loginInfo")==null) {
-			//샌드리다이레긑.
-		}else {
-			
-			
-		}
+		
 			
 		if (forwardURL.contains("redirect:")) {
 			String redirectURL = forwardURL.substring(forwardURL.indexOf(":") + 1);
