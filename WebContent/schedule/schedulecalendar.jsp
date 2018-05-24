@@ -12,7 +12,7 @@ body {
 }
 
 .articleTop {
-	padding-top: 15;
+	padding-top:15px;
 }
 
 #calendar {
@@ -52,7 +52,7 @@ select.sp {
 </style>
 
 <div class="articleTop">
-	<i class="fa fa-calendar-check-o" style="font-size: 25px"></i>
+	<i class="fa fa-calendar-check-o" style="font-size: 22px"></i>
 	<button class="btn btn-default" id="print">인쇄</button>
 	<button  class="btn btn-default" data-toggle="modal"
 		data-target="#myModal" id="add">일정추가</button>
@@ -225,7 +225,7 @@ select.sp {
 												  var schTypeObj = $('div.articleTop >i').text();
 												  if(schTypeObj =='개인일정'){ /* 개인일정 눌렀을 때는 개인일정만 뜰 수 있도록 설정 */
 												    $.ajax({
-												      url: '../schpersonal.do',
+												      url: '${pageContext.request.contextPath}/schpersonal.do',
 												      dataType: 'json',
 												      data: {
 												        start: start.unix(),
@@ -265,7 +265,7 @@ select.sp {
 												    });
 												}else if(schTypeObj =='부서일정'){
 													$.ajax({
-													      url: '../schdept.do',
+													      url: '${pageContext.request.contextPath}/schdept.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),
@@ -306,7 +306,7 @@ select.sp {
 													    });
 												}else if(schTypeObj == '회사일정'){
 													$.ajax({
-													      url: '../schcpn.do',
+													      url: '${pageContext.request.contextPath}/schcpn.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),
@@ -346,7 +346,7 @@ select.sp {
 													    });
 												}else if(schTypeObj == '전체일정'){
 													$.ajax({
-													      url: '../schtotal.do',
+													      url: '${pageContext.request.contextPath}/schtotal.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),

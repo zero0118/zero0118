@@ -21,12 +21,13 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String selectPersonalSQL = "select sch_no,emp_num,sch_name,sch_type,to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
-									"       to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin, sch_repeat , sch_repeatcycle , sch_contents,\r\n" + 
-									"       sch_code,sch_useyn\r\n" + 
+		String selectPersonalSQL = "select sch_no,emp_num,sch_name,sch_type,to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin, \r\n" + 
+									"to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin, sch_repeat , sch_repeatcycle , sch_contents, \r\n" + 
+									"sch_code,sch_useyn\r\n" + 
 									"from sch_schedule\r\n" + 
-									"where emp_num = ? " + 
-									"and sch_useyn = 'N'";
+									"where emp_num = ? \r\n" + 
+									"and sch_useyn = 'N'\r\n" + 
+									"and sch_code=0";
 		List<Schedule> listSchedule = new ArrayList<>();
 		
 		try {
@@ -53,12 +54,11 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		String selectDeptlSQL = "SELECT sch_no, sc.emp_num,sch_name,sch_type, to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
 								"       to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin , sch_repeat,sch_repeatcycle,sch_contents,sch_code,sch_useyn\r\n" + 
 								"from sch_schedule sc, members m\r\n" + 
 								"where m.emp_num=sc.emp_num\r\n" + 
-								"and sc.sch_code = '1'\r\n" + 
+								"and sc.sch_code = 1 \r\n" + 
 								"and m.dept_num = (select di.dept_num\r\n" + 
 								"                  from members m, dept_info di\r\n" + 
 								"                  where m.dept_num=di.dept_num\r\n" + 
@@ -94,7 +94,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		String selectCompanylSQL = "select sch_no, emp_num,sch_name,sch_type, to_char(sch_startdate, 'yyyy-mm-dd') sch_startdate,sch_starthour,sch_startmin,\r\n" + 
 									"       to_char(sch_enddate, 'yyyy-mm-dd') sch_enddate , sch_endhour , sch_endmin , sch_repeat,sch_repeatcycle,sch_contents,sch_code,sch_useyn\r\n" + 
 									"from sch_schedule\r\n" + 
-									"where sch_code = '2'\r\n" + 
+									"where sch_code = 2\r\n" + 
 									"and sch_useyn = 'N'";
 		List<Schedule> listSchedule = new ArrayList<>();
 		
@@ -166,5 +166,16 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 		}
 	}
 
+	public static void main(String[] args) {
+		SchCodeDAOOracle test = new SchCodeDAOOracle();
+		try {
+			List<Schedule> testlist = test.selectDepartment("1");
+			System.out.println(testlist);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
 
