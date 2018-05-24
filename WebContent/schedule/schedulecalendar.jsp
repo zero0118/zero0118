@@ -49,18 +49,22 @@ select.sp {
 #testDatepicker , #testDatepicker2{
 	padding-bottom: 5px;
 }
+/* input.editschedule , input.delschedule{
+	display:none;
+} */
 </style>
 
 <div class="articleTop">
 	<i class="fa fa-calendar-check-o" style="font-size: 22px"></i>
 	<button class="btn btn-default" id="print">인쇄</button>
-	<button  class="btn btn-default" data-toggle="modal"
+	<button class="btn btn-default" data-toggle="modal"
 		data-target="#myModal" id="add">일정추가</button>
 
 </div>
 
 <hr>
 <div id='calendar'></div>
+    <%-- 일정추가 modal --%>
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -71,7 +75,6 @@ select.sp {
 				<%@include file="scheduleadd.jsp"%> <%-- modal body 부분.--%>
 			</div>
 		</div>
-
 	</div>
 
 	<script>
@@ -169,8 +172,6 @@ select.sp {
 													editable:false,
 													displayEventEnd : true
 												// other view-specific options here
-												
-												
 												}
 											},
 											/* 선택이 가능하게 할 수 있다. */
@@ -179,15 +180,13 @@ select.sp {
 											selectHelper : true,
 											dayClick: function(date) {
 										          alert('clicked ' + date.format());
-										          console.log('dayclick');
 										        },
 											select: function(startDate, endDate) {
 										          alert('selected ' + startDate.format() + ' to ' + endDate.format());
-										          console.log("abc");
 										    },
 
 											navLinks : true, // can click day/week names to navigate views
-											editable : true, //옮길 수 있느냐 없느냐.
+											editable : false, //옮길 수 있느냐 없느냐.
 											eventLimit : true, // allow "more" link when too many events
 											googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE",
 											eventSources : [ {
@@ -195,20 +194,16 @@ select.sp {
 												className : "koHolidays",
 												color : "#FF0000",
 												textColor : "#FFFFFF",
-												editable: false,
+												
 											} ],
 											  
-											eventClick: function(event, jsEvent, view) {
-												console.log('EVENT CLICK ' + event.title);
-												//console.log(jsEvent);
-												//console.log(view);
-												//console.log(this);
-												//return false;
-											},  
+										
+
 											
-											/* 이벤트 마우스 갖다대면 상세일정 나타내기. */
+											
+											// event click 및  hover
 											eventRender: function(eventObj, element) {
-												
+												/* 이벤트 마우스 갖다대면 상세일정 나타내기. */
 												element.popover({
 										          title: eventObj.title,
 										          content: eventObj.description,
@@ -216,6 +211,20 @@ select.sp {
 										          placement: 'bottom',
 										          container: 'body'
 										        });
+												
+												
+												
+													element.click(function() {
+														$("div.modal-header>h4").html("일정수정");
+														$("div.modal-footer>input").hide();
+														$("div.modal-footer>input.editschedule").show();
+														$("div.modal-footer>input.delschedule").show();
+														$('#myModal').modal('toggle');
+														
+												   });
+													
+												
+												
 										    },
 
 										    /* 모든 일정들 */
@@ -432,60 +441,19 @@ select.sp {
 												}
 											 }
 												
-												
-												/* [ {
-												title : 'All Day Event',
-												start : '2018-05-01',
-											}, {
-												title : 'Long Event',
-												start : '2018-05-07',
-												end : '2018-05-10'
-											}, {
-												id : 999,
-												title : 'Repeating Event',
-												start : '2018-05-09T16:00:00'
-											}, {
-												id : 999,
-												title : 'Repeating Event',
-												start : '2018-05-16T16:00:00'
-											}, {
-												title : 'Conference',
-												start : '2018-05-11',
-												end : '2018-05-13'
-											}, {
-												title : 'Meeting',
-												start : '2018-05-12T10:30:00',
-												end : '2018-05-12T12:30:00'
-											}, {
-												title : 'Lunch',
-												start : '2018-05-12T12:00:00'
-											}, {
-												title : 'Meeting',
-						
-						
-												start : '2018-05-12T14:30:00'
-											}, {
-												title : 'Happy Hour',
-												start : '2018-05-12T17:30:00'
-											}, {
-												title : 'Dinner',
-												start : '2018-05-12T20:00:00'
-											}, {
-												title : 'Birthday Party',
-												start : '2018-05-13T07:00:00'
-											}, {
-												title : 'Click for Google',
-												url : 'http://google.com/',
-												start : '2018-05-28'
-											} ] */
-											
-
 										});
 					});
 	
 	
+	
 	//modal 이벤트
 	$(function() {
+		
+		$("button#add").click(function(){
+			$("div.modal-header>h4").html("일정추가");
+			$("div.modal-footer>input").hide();
+			$("div.modal-footer>input.addschedule").show();
+		});
 		
 		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
 		var codeStringObj = $('div.articleTop>i').text();
