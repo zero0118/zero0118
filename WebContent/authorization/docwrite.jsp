@@ -23,7 +23,7 @@
 						<div>승인자2</div>
 						<button class="btn btn-success" style="background: gray;">선택</button>
 						<!-- <input type="button" value="선택" style="display:block"> -->
-					</td>
+					</td> 
 					<td rowspan="2" style="text-align: center;">
 						<div>승인자3</div>
 						<button class="btn btn-success" style="background: gray;">선택</button>

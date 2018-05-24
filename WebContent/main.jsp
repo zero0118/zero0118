@@ -11,7 +11,7 @@
 		var className = '<%=request.getParameter("page")%>';
 		
 		if(className=='schedule'){
-			location.href="schedule/schedulecalendar.jsp?list=개인일정";
+			location.href="kitware_v2/schedule/schedulecalendar.jsp?list=개인일정";
 		}else{
 			location.href=className+"/"+className+".jsp";
 		}

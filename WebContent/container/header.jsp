@@ -38,18 +38,18 @@
 <!-- Custom Theme JavaScript -->
 <script src="../js/custom/sb-admin-2.js"></script>
 
-<!-- include summernote css/js 윤지추가두줄-->
-<script src="../summernote/summernote.js"></script>
-<script src="../summernote/lang/summernote-ko-KR.js"></script>
+<!-- include summernote css/js 추가두줄-->
+<script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/summernote.css">
-<link href='../css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-<link href='../css/fullcalendar/fullcalendar.print.min.css'
+<link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
-<script src='../js/fullcalendar/moment.min.js'></script>
-<script src='../js/fullcalendar/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/moment.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/fullcalendar.min.js'></script>
 <script type=text/javascript src='../js/fullcalendar/locale/ko.js'></script>
-<script src='../js/fullcalendar/theme-chooser.js'></script>
-<script src='../js/fullcalendar/gcal.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/theme-chooser.js'></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar/gcal.js'></script>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css'
 	rel='stylesheet'>
 <script>
@@ -74,14 +74,14 @@
 			case 'schedule': // 일정관리 tab 눌렀을 때 
 				location.href='${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인일정';
 				break;
-			case 'board': // 일정관리 tab 눌렀을 때 
+			case 'board': // 게시판 tab 눌렀을 때 
 				location.href="${pageContext.request.contextPath}/board/board.jsp";
 				break;
-			case 'attendance': // 일정관리 tab 눌렀을 때 
+			case 'attendance': // 근태 tab 눌렀을 때 
 					location.href="${pageContext.request.contextPath}/attendance/mymonth.jsp";
 					break;
-			case 'authorization': // 일정관리 tab 눌렀을 때 
-					location.href="${pageContext.request.contextPath}/authorization/approveMain.jsp";
+			case 'authorization': // 전자결재 tab 눌렀을 때 
+					location.href="${pageContext.request.contextPath}/doclist.do";
 					break;
 			case 'home' :
 				location.href='${pageContext.request.contextPath}/home/home.jsp';
@@ -95,13 +95,13 @@
 		//왼쪽 side-menu bar 눌렀을 때
 		$('ul#side-menu>li.schedule a').click(function() {
 			var list = $(this).text();
-			location.href="../schedule/schedulecalendar.jsp?list="+list;
+			location.href="${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list="+list;
 		});
 		$('.nav>li.gian').click(function() {
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
-				url : 'authorization/docwrite.jsp',
+				url : '${pageContext.request.contextPath}/authorization/docwrite.jsp',
 				success : function(data) {
 					$('div#page-wrapper').empty();
 					$('div#page-wrapper').html(data);
@@ -112,7 +112,7 @@
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
-				url : 'authorization/balju.jsp',
+				url : '${pageContext.request.contextPath}/authorization/balju.jsp',
 				success : function(data) {
 					$('div#page-wrapper').empty();
 					$('div#page-wrapper').html(data);
@@ -123,7 +123,7 @@
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
-				url : 'authorization/chuljang.jsp',
+				url : '${pageContext.request.contextPath}/authorization/chuljang.jsp',
 				success : function(data) {
 					$('div#page-wrapper').empty();
 					$('div#page-wrapper').html(data);
@@ -134,7 +134,7 @@
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
-				url : 'authorization/byungga.jsp',
+				url : '${pageContext.request.contextPath}/authorization/byungga.jsp',
 				success : function(data) {
 					$('div#page-wrapper').empty();
 					$('div#page-wrapper').html(data);
@@ -145,7 +145,7 @@
 			//var form = $('#write>li').attr('class');
 			$.ajax({
 				method : 'POST',
-				url : 'authorization/jotae.jsp',
+				url : '${pageContext.request.contextPath}/authorization/jotae.jsp',
 				success : function(data) {
 					$('div#page-wrapper').empty();
 					$('div#page-wrapper').html(data);
@@ -156,7 +156,7 @@
 		
 		//로그아웃 버튼 누른다.
 		$('div.navbar-header>a.logout').click(function(){
-			location.href="../logout.do";
+			location.href="${pageContext.request.contextPath}/logout.do";
 		});
 		
 	});
@@ -176,10 +176,10 @@
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../css/custom/sb-admin-2.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/custom/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../css/font-awesome/font-awesome.min.css" rel="stylesheet"
+<link href="${pageContext.request.contextPath}/css/font-awesome/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
@@ -235,35 +235,28 @@ div.navbar-header> a.logout{
 			<div class="sidebar">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<li class="authorization"><a href="#">개인문서함<span
-								class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#">미완료문서함</a></li>
-								<li><a href="#">상신문서함</a></li>
-								<li><a href="#">완료문서함</a></li>
-							</ul></li>
 						<li class="authorization"><a href="#">결재문서함<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">미완료문서함</a></li>
-								<li><a href="#">완료문서함</a></li>
+								<li class = "gj_wait"><a href="#">결재대기</a></li>
+								<li class = "gj_exp"><a href="#">결재예정</a></li>
+								<li clsss = "gj_ok"><a href="#">결재완료</a></li>
 							</ul></li>
-						<li class="authorization"><a href="#">협조문서함<span
+						<li class="authorization"><a href="#">개인문서함<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">미완료문서함</a></li>
-								<li><a href="#">상신문서함</a></li>
-								<li><a href="#">완료문서함</a></li>
+								<li class = "gian_list"><a href="${pageContext.request.contextPath}/authorization/gj_wait.jsp">기안문서함</a></li>
+								<li class = "gj_list"><a href="#">결재문서함</a></li>
 							</ul></li>
 						<li class="authorization"><a href="#" id="write">결재문서작성<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li class="gian"><a href="../authorization/docwrite.jsp">기안서</a></li>
+								<li class="gian"><a href="${pageContext.request.contextPath}/authorization/docwrite.jsp">기안서</a></li>
 								<li class="chuljang"><a
-									href="../authorization/chuljang.jsp">외근신청</a></li>
-								<li class="byungga"><a href="../authorization/byungga.jsp">병가신청</a></li>
-								<li class="jotae"><a href="../authorization/jotae.jsp">조퇴신청</a></li>
-								<li class="balju"><a href="../authorization/balju.jsp">발주신청</a></li>
+									href="${pageContext.request.contextPath}/authorization/chuljang.jsp">외근신청</a></li>
+								<li class="byungga"><a href="${pageContext.request.contextPath}/authorization/byungga.jsp">병가신청</a></li>
+								<li class="jotae"><a href="${pageContext.request.contextPath}/authorization/jotae.jsp">조퇴신청</a></li>
+								<li class="balju"><a href="${pageContext.request.contextPath}/authorization/balju.jsp">발주신청</a></li>
 							</ul></li>
 						
 						<li class="schedule"><a href="#">개인일정</a> <a href="#">부서일정</a>
@@ -271,11 +264,11 @@ div.navbar-header> a.logout{
 
 						<li class="attendance"><a href="#">내 근태 현황<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li class="mymonth"><a href="../attendance/attendance.jsp">월간 현황</a></li>
-								<li class="myyear"><a href="../attendance/myyear.jsp">연간 현황</a></li>
+								<li class="mymonth"><a href="${pageContext.request.contextPath}/attendance/attendance.jsp">월간 현황</a></li>
+								<li class="myyear"><a href="${pageContext.request.contextPath}/attendance/myyear.jsp">연간 현황</a></li>
 							</ul>
 						</li>
-						<li class="attendance"><a href="../attendance/myyeoncha.jsp">내 연차 현황</a></li>
+						<li class="attendance"><a href="${pageContext.request.contextPath}/attendance/myyeoncha.jsp">내 연차 현황</a></li>
 						
 						<li class="board"><a href="#">게시판<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
