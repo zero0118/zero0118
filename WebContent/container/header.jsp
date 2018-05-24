@@ -222,7 +222,7 @@ div.navbar-header> a.logout{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/home/home.jsp">KIT Ware</a>
 				<a class="navbar-brand logout" href="#">Logout</a>
-				<div class="logininfo">${sessionScope.loginInfo.name} ${sessionScope.loginInfo.gradeinfo[0].position_name} 님 로그인 되었습니다.</div>
+				<div class="logininfo">${sessionScope.loginInfo.name} ${sessionScope.loginInfo.gradeinfo.position_name} 님 로그인 되었습니다.</div>
 			</div>
 			<!-- /.navbar-header -->
 

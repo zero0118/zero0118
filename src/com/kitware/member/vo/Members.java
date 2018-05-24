@@ -17,9 +17,9 @@ public class Members {
 	private String tel3;
 	private String picture;
 	// 3개 테이블  has a 관계
-	private List<MembersDetailInfo> detailinfo;
-	private List<DeptInfo> deptinfo;
-	private List<GradeInfo> gradeinfo;
+	private MembersDetailInfo detailinfo;
+	private DeptInfo deptinfo;
+	private GradeInfo gradeinfo;
 	
 	
 	public Members() {
@@ -30,7 +30,7 @@ public class Members {
 
 	public Members(String emp_num, String dept_num, String position_num, String id, String pwd, String name,
 			String gender, String email1, String email2, String tel1, String tel2, String tel3, String picture,
-			List<MembersDetailInfo> detailinfo, List<DeptInfo> deptinfo, List<GradeInfo> gradeinfo) {
+			MembersDetailInfo detailinfo, DeptInfo deptinfo, GradeInfo gradeinfo) {
 		super();
 		this.emp_num = emp_num;
 		this.dept_num = dept_num;
@@ -181,32 +181,32 @@ public class Members {
 	}
 
 
-	public List<MembersDetailInfo> getDetailinfo() {
+	public MembersDetailInfo getDetailinfo() {
 		return detailinfo;
 	}
 
 
-	public void setDetailinfo(List<MembersDetailInfo> detailinfo) {
+	public void setDetailinfo(MembersDetailInfo detailinfo) {
 		this.detailinfo = detailinfo;
 	}
 
 
-	public List<DeptInfo> getDeptinfo() {
+	public DeptInfo getDeptinfo() {
 		return deptinfo;
 	}
 
 
-	public void setDeptinfo(List<DeptInfo> deptinfo) {
+	public void setDeptinfo(DeptInfo deptinfo) {
 		this.deptinfo = deptinfo;
 	}
 
 
-	public List<GradeInfo> getGradeinfo() {
+	public GradeInfo getGradeinfo() {
 		return gradeinfo;
 	}
 
 
-	public void setGradeinfo(List<GradeInfo> gradeinfo) {
+	public void setGradeinfo(GradeInfo gradeinfo) {
 		this.gradeinfo = gradeinfo;
 	}
 
@@ -218,8 +218,7 @@ public class Members {
 				+ email2 + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", picture=" + picture
 				+ ", detailinfo=" + detailinfo + ", deptinfo=" + deptinfo + ", gradeinfo=" + gradeinfo + "]";
 	}
-	
-	
+
 	
 	
 	
