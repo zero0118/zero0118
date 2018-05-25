@@ -5,7 +5,6 @@ import java.util.List;
 import com.kitware.authorization.dao.DocDAO;
 import com.kitware.authorization.dao.DocDAOOracle;
 import com.kitware.authorization.vo.DocVO;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class DocSelectService {
 
@@ -33,6 +32,15 @@ public class DocSelectService {
 	
 	public List<DocVO> findOk(String id, int page) throws Exception {
 		return dao.selectOk("kim", page);
+	}
+	
+	public List<DocVO> selectExpected(String conf_num, int page) throws Exception{
+		return dao.selectExpected("3", page);
+		
+	}
+	public List<DocVO> selectGJOk(String conf_num, int page) throws Exception{
+		return dao.selectGJOk("3", page);
+		
 	}
 
 	public DocSelectService() {

@@ -12,7 +12,10 @@ public interface DocDAO {
 	public List<DocVO> selectIng(String id, int page) throws Exception; //내가 올린 기안 다 보기(page 매개변수 추가)
 	public List<DocVO> selectOk(String id) throws Exception; //완료문서 select (내가 올린거)  
 	List<DocVO> selectOk(String id, int page) throws Exception;//내가 올린 완료문서 다 보기(page 매개변수 추가)
-	public List<DocDetailVO> selectExpected(String conf_num) throws Exception; //결재예정 select  
+	public List<DocVO> selectExpected(String conf_num, int page) throws Exception; //언젠가 결재예정 select 
+	public List<DocVO> selectGJOk(String conf_num, int page) throws Exception; //내가 결재완료한거(결재완료 사이드메뉴 해당)
+	
+	
 	//다 구현한거 아니고 추가해야됩니다
 	
 	

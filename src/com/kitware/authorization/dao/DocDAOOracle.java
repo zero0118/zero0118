@@ -1,7 +1,6 @@
 package com.kitware.authorization.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.List;
 import com.kitware.authorization.vo.DocDetailVO;
 import com.kitware.authorization.vo.DocKindVO;
 import com.kitware.authorization.vo.DocVO;
-import com.kitware.authorization.vo.PageBean;
 
 
 
@@ -195,7 +193,8 @@ public class DocDAOOracle implements DocDAO {
 			int endRow=cntPerPage * page;
 			int startRow=endRow-cntPerPage+1; 			
 			pstmt.setInt(1, startRow);	
-			pstmt.setInt(2, endRow);*/
+			pstmt.setInt(2, endRow);
+			위에 쿼리 수정해야 먹음*/
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				docvo2 = new DocVO();
@@ -217,10 +216,97 @@ public class DocDAOOracle implements DocDAO {
 			
 
 	@Override
-	public List<DocDetailVO> selectExpected(String conf_num) throws Exception {
-		return null;
+	public List<DocVO> selectExpected(String conf_num, int page) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String selectExpectedSQL = "select b.*"
+				+" from("
+				+" select  rownum r, d.doc_num, d.doc_title, d.doc_state, d.start_date, dk.doc_name"
+				+" from document d, doc_detail dd, doc_kind dk"
+				+" where d.doc_num = dd.doc_num"
+				+" and d.doc_kind = dk.doc_kind"
+				+" and conf_num = ?"
+				+" and acs_yn = 0) b"
+				+" where r between ? and ?";
+		List<DocVO> doclist2 = new ArrayList<>(); //이부분부터 수정들어가야함 0525 오후 4:43
+		DocVO docvo2 = null;	//doc 데이터 담음
+		DocKindVO dock2 = new DocKindVO();//dockind 데이터 담음
+		try {
+			con= MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectExpectedSQL);
+			pstmt.setString(1, conf_num);
+			int cntPerPage=5;//1페이지별 5건씩 보여준다
+			int endRow=cntPerPage * page;
+			int startRow=endRow-cntPerPage+1; 			
+			pstmt.setInt(2, startRow);	
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				docvo2 = new DocVO();
+				docvo2.setDoc_num(rs.getString("doc_num"));
+				docvo2.setDoc_title(rs.getString("doc_title"));
+				docvo2.setDoc_state(rs.getString("doc_state"));
+				docvo2.setStart_date(rs.getString("start_date"));
+				dock2 = new DocKindVO(docvo2.getDoc_kind(),rs.getString("doc_name"));
+				docvo2.setDoc_kindvo(dock2);
+				doclist2.add(docvo2);	
+			}
+			
+		}finally{
+			MyConnection.close(rs,pstmt,con);
+		}
+		return doclist2;
 
 	}
+	
+	
+	@Override
+	public List<DocVO> selectGJOk(String conf_num, int page) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String selectGJOkSQL = "select b.*"
+				+" from("
+				+" select  rownum r, d.doc_num, d.doc_title, d.doc_state, d.start_date, dk.doc_name"
+				+" from document d, doc_detail dd, doc_kind dk"
+				+" where d.doc_num = dd.doc_num"
+				+" and d.doc_kind = dk.doc_kind"
+				+" and conf_num = ?"
+				+" and acs_yn = 1) b"
+				+" where r between ? and ?";
+		List<DocVO> doclist2 = new ArrayList<>(); //이부분부터 수정들어가야함 0525 오후 4:43
+		DocVO docvo2 = null;	//doc 데이터 담음
+		DocKindVO dock2 = new DocKindVO();//dockind 데이터 담음
+		try {
+			con= MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectGJOkSQL);
+			pstmt.setString(1, conf_num);
+			int cntPerPage=5;//1페이지별 5건씩 보여준다
+			int endRow=cntPerPage * page;
+			int startRow=endRow-cntPerPage+1; 			
+			pstmt.setInt(2, startRow);	
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				docvo2 = new DocVO();
+				docvo2.setDoc_num(rs.getString("doc_num"));
+				docvo2.setDoc_title(rs.getString("doc_title"));
+				docvo2.setDoc_state(rs.getString("doc_state"));
+				docvo2.setStart_date(rs.getString("start_date"));
+				dock2 = new DocKindVO(docvo2.getDoc_kind(),rs.getString("doc_name"));
+				docvo2.setDoc_kindvo(dock2);
+				doclist2.add(docvo2);	
+			}
+			
+		}finally{
+			MyConnection.close(rs,pstmt,con);
+		}
+		return doclist2;
+	}
+	
 	
 	public static void main(String[] args) {
 		DocDAOOracle test = new DocDAOOracle();
@@ -234,7 +320,11 @@ public class DocDAOOracle implements DocDAO {
 			List<DocVO> list4 = test.selectOk("kim",1);
 			System.out.println("44aa"+list4.size());
 			Integer sc = test.selectCount();
-			System.out.println(sc.SIZE);
+			System.out.println("listsc"+sc.SIZE);
+			List<DocVO> list5 = test.selectExpected("3", 1);
+			System.out.println(list5.size());
+			List<DocVO> list6 = test.selectGJOk("3", 1);
+			System.out.println("list6:"+list6.size());
 			
 			
 
