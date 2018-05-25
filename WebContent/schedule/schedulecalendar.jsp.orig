@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../container/header.jsp"%>
+<<<<<<< HEAD
+		
+=======
 <c:set var="session" value="${sessionScope.loginInfo}"></c:set>		
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 <style>
 body {
 	margin: 0;
@@ -34,6 +38,7 @@ div>.date {
 .text {
 	width: 450px;
 	height: 170px;
+<<<<<<< HEAD
 }
 
 td {
@@ -48,6 +53,8 @@ select.sp {
 }
 #testDatepicker , #testDatepicker2{
 	padding-bottom: 5px;
+=======
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 }
 
 td {
@@ -71,14 +78,22 @@ select.sp {
 <div class="articleTop">
 	<i class="fa fa-calendar-check-o" style="font-size: 22px"></i>
 	<button class="btn btn-default" id="print">인쇄</button>
+<<<<<<< HEAD
+	<button  class="btn btn-default" data-toggle="modal"
+		data-target="#myModal" id="add">일정추가</button>
+
+=======
 	<button class="btn btn-default" data-toggle="modal"
 		data-target="#myModal" id="add">일정추가</button>
-</div>
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 </div>
 
 <hr>
 <div id='calendar'></div>
+<<<<<<< HEAD
+=======
     <%-- 일정추가 modal --%>
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -89,7 +104,6 @@ select.sp {
 				<%@include file="scheduleadd.jsp"%> <%-- modal body 부분.--%>
 			</div>
 		</div>
-
 	</div>
 
 	<script>
@@ -310,7 +324,11 @@ select.sp {
 															            title: sc.title,
 															            start: sc.startdate,
 															            color : "#ff9000",
+<<<<<<< HEAD
+															            
+=======
 															            category : sc.empno,
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 															            description: "[일정상세]  "+contents
 														         	 });
 													        	}else{
@@ -467,6 +485,11 @@ select.sp {
 					});
 	
 	
+<<<<<<< HEAD
+	//modal 이벤트
+	$(function() {
+		
+=======
 	
 	//modal 이벤트
 	$(function() {
@@ -477,88 +500,7 @@ select.sp {
 			$("div.modal-footer>input.addschedule").show();
 		});
 		
-		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
-		var codeStringObj = $('div.articleTop>i').text();
-		console.log(codeStringObj);
-		var codeIntObj;
-		if(codeStringObj =='개인일정'){
-			codeIntObj = '0';
-		}else if(codeStringObj =='부서일정'){
-			codeIntObj = '1';
-		}else if(codeStringObj =='회사일정'){
-			codeIntObj = '2';
-		}
-		console.log(codeIntObj);
-		$('#code').val(codeIntObj);
-		
-		
-		
-		$("#testDatepicker").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-		$("#testDatepicker2").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-
-
-		$('input:radio[name=repeatbl]').change(function() {
-			var radioValue = $(this).val();
-			if (radioValue == "Y") {
-				$('#repeatok').show();
-			} else if (radioValue == "N") {
-				$('#repeatok').hide();
-			}
-
-		});
-		$('input:radio[name=repeatterm]').change(function() {
-			var radioValue = $(this).val();
-			if(radioValue =="1" ){
-				$('#weekcheck').show();
-				$('#dayinput').hide();	
-			}else{
-				$('#dayinput').hide();
-				$('#weekcheck').hide();
-				
-			}
-			
-		});
-		  $('form#addsc').submit(function(){
-			  $.ajax({
-				  url:'${pageContext.request.contextPath}/schadd.do',
-				  method:'post',
-				  data:$('form').serialize(),
-				  success:function(data){
-					  if(data.trim() == '1'){ //일정추가 성공
-					  	  //일정추가가 성공하면 개인일정 탭을 누른것과 같은 효과.
-					  	  if(codeStringObj == '개인일정'){
-						 	 var $triggerObj = $("li.schedule>a#schperson");
-					  	  }else if(codeStringObj == '부서일정'){
-					  		$triggerObj = $("li.schedule>a#schdept");
-					  	  }else if(codeStringObj == '회사일정'){
-					  		$triggerObj = $("li.schedule>a#schcompany");  
-					  	  }else if(codeStringObj == '전체일정'){
-					  		$triggerObj = $("li.schedule>a#schtotal");
-					  	  }
-					     $('#myModal').modal('toggle');
-				  		 $triggerObj.trigger('click');
-					  
-					  }else if(data.trim() == '-1'){ //일정추가 실패
-						 alert('일정추가 실패'); 
-					  }
-				  }
-			  });
-			  
-			  return false;
-		  });
-
-	});
-	
-	
-	//modal 이벤트
-	$(function() {
-		
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
 		var codeStringObj = $('div.articleTop>i').text();
 		console.log(codeStringObj);

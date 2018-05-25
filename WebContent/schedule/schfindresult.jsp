@@ -11,7 +11,8 @@
 	"schedule":[
 	<c:forEach items="${listSchedule}" var="item" varStatus="status">
 	<c:if test="${status.index !=0}">,</c:if>
-	{"title":"${item.sch_name}",
+	{"empno":"${item.emp_num}",
+	 "title":"${item.sch_name}",
 	 "type":"${item.sch_type}",
 	 "startdate":"${item.sch_startdate}",
 	 "starthour":"${item.sch_starthour}",
