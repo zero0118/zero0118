@@ -36,7 +36,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
+				Schedule sc = new Schedule(rs.getString("sch_no"),rs.getString("emp_num"),rs.getString("sch_name"),rs.getString("sch_type")
 										   ,rs.getString("sch_startdate"),rs.getString("sch_starthour"),rs.getString("sch_startmin")
 										   ,rs.getString("sch_enddate"),rs.getString("sch_endhour"),rs.getString("sch_endmin")
 										   ,rs.getString("sch_repeat"),rs.getString("sch_repeatcycle"),rs.getString("sch_contents")
@@ -72,7 +72,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
+				Schedule sc = new Schedule(rs.getString("sch_no"),rs.getString("emp_num"),rs.getString("sch_name"),rs.getString("sch_type")
 						   ,rs.getString("sch_startdate"),rs.getString("sch_starthour"),rs.getString("sch_startmin")
 						   ,rs.getString("sch_enddate"),rs.getString("sch_endhour"),rs.getString("sch_endmin")
 						   ,rs.getString("sch_repeat"),rs.getString("sch_repeatcycle"),rs.getString("sch_contents")
@@ -103,7 +103,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 			pstmt = con.prepareStatement(selectCompanylSQL);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
+				Schedule sc = new Schedule(rs.getString("sch_no"),rs.getString("emp_num"),rs.getString("sch_name"),rs.getString("sch_type")
 						   ,rs.getString("sch_startdate"),rs.getString("sch_starthour"),rs.getString("sch_startmin")
 						   ,rs.getString("sch_enddate"),rs.getString("sch_endhour"),rs.getString("sch_endmin")
 						   ,rs.getString("sch_repeat"),rs.getString("sch_repeatcycle"),rs.getString("sch_contents")
@@ -153,7 +153,7 @@ public class SchCodeDAOOracle implements SchCodeDAO {
 			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Schedule sc = new Schedule(rs.getString("sch_no"),id,rs.getString("sch_name"),rs.getString("sch_type")
+				Schedule sc = new Schedule(rs.getString("sch_no"),rs.getString("emp_num"),rs.getString("sch_name"),rs.getString("sch_type")
 						   ,rs.getString("sch_startdate"),rs.getString("sch_starthour"),rs.getString("sch_startmin")
 						   ,rs.getString("sch_enddate"),rs.getString("sch_endhour"),rs.getString("sch_endmin")
 						   ,rs.getString("sch_repeat"),rs.getString("sch_repeatcycle"),rs.getString("sch_contents")

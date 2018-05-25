@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../container/header.jsp"%>
-		
+<c:set var="session" value="${sessionScope.loginInfo}"></c:set>		
 <style>
 body {
 	margin: 0;
@@ -59,7 +59,6 @@ select.sp {
 	<button class="btn btn-default" id="print">인쇄</button>
 	<button class="btn btn-default" data-toggle="modal"
 		data-target="#myModal" id="add">일정추가</button>
-
 </div>
 
 <hr>
@@ -198,11 +197,9 @@ select.sp {
 											} ],
 											  
 										
-
-											
-											
 											// event click 및  hover
 											eventRender: function(eventObj, element) {
+												var test = element.attr("category",eventObj.category);
 												/* 이벤트 마우스 갖다대면 상세일정 나타내기. */
 												element.popover({
 										          title: eventObj.title,
@@ -213,7 +210,8 @@ select.sp {
 										        });
 												
 												
-												
+												console.log($(test).attr("category"));
+												if($(test).attr("category")==${session.emp_num}){
 													element.click(function() {
 														$("div.modal-header>h4").html("일정수정");
 														$("div.modal-footer>input").hide();
@@ -222,9 +220,7 @@ select.sp {
 														$('#myModal').modal('toggle');
 														
 												   });
-													
-												
-												
+												}
 										    },
 
 										    /* 모든 일정들 */
@@ -255,7 +251,8 @@ select.sp {
 														            title: sc.title,
 														            start: sc.startdate,
 														            color : "#41a6f4",
-														            description: "[일정상세] "+contents
+														            description: "[일정상세] "+contents,
+														            category : sc.empno
 													         	 });
 												        	}else{
 																events.push({
@@ -263,7 +260,8 @@ select.sp {
 														            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 														            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 														            color : "#41a6f4",
-														            description: "[일정상세] "+contents
+														            description: "[일정상세] "+contents,
+														            category : sc.empno
 													         	 });
 												        	}
 																
@@ -294,7 +292,7 @@ select.sp {
 															            title: sc.title,
 															            start: sc.startdate,
 															            color : "#ff9000",
-															            
+															            category : sc.empno,
 															            description: "[일정상세]  "+contents
 														         	 });
 													        	}else{
@@ -303,7 +301,8 @@ select.sp {
 															            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 															            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 															            color : "#ff9000",
-															            description: "[일정상세]  "+contents
+															            description: "[일정상세]  "+contents,
+															            category : sc.empno
 												        			
 														         	 });
 													        	}
@@ -335,7 +334,8 @@ select.sp {
 															            title: sc.title,
 															            start: sc.startdate,
 															            color : "#56d61b",
-															            description: "[일정상세]  "+contents
+															            description: "[일정상세]  "+contents,
+															            category : sc.empno
 														         	 });
 													        	}else{
 																	events.push({
@@ -343,7 +343,8 @@ select.sp {
 															            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 															            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 															            color : "#56d61b",
-															            description: "[일정상세]  "+contents
+															            description: "[일정상세]  "+contents,
+															            category : sc.empno
 												        			
 														         	 });
 													        	}
@@ -378,7 +379,8 @@ select.sp {
 																            title: sc.title,
 																            start: sc.startdate,
 																            color : "#41a6f4",
-																            description: "[일정상세]  "+contents
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}else{
 																		events.push({
@@ -386,8 +388,8 @@ select.sp {
 																            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 																            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 																            color : "#41a6f4",
-																            description: "[일정상세]  "+contents
-													        			
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}
 													        		break;
@@ -397,7 +399,8 @@ select.sp {
 																            title: sc.title,
 																            start: sc.startdate,
 																            color : "#ff9000",
-																            description: "[일정상세]  "+contents
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}else{
 																		events.push({
@@ -405,8 +408,8 @@ select.sp {
 																            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 																            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 																            color : "#ff9000",
-																            description: "[일정상세]  "+contents
-													        			
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}
 													        		break;
@@ -416,7 +419,8 @@ select.sp {
 																            title: sc.title,
 																            start: sc.startdate,
 																            color : "#56d61b",
-																            description: "[일정상세]  "+contents
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}else{
 																		events.push({
@@ -424,8 +428,8 @@ select.sp {
 																            start: sc.startdate+'T'+sc.starthour+':'+sc.startmin,
 																            end: sc.enddate+'T'+sc.endhour+':'+sc.endmin,
 																            color : "#56d61b",
-																            description: "[일정상세]  "+contents
-													        			
+																            description: "[일정상세]  "+contents,
+																            category : sc.empno
 															         	 });
 														        	}
 													        		break;
