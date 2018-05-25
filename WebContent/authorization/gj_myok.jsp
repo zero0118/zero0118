@@ -2,34 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../container/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-</script>
 <c:set var="pb" value="${requestScope.pagebean }"/> 
 <div id="div1"></div>
 <div class="container">
 	<div>&nbsp;</div>
-	<h2>결재한게 상태가 완료된 문서</h2>
+	<h2>내가 한 결재 완료</h2>
 	<div>&nbsp;</div>
 	<table class="table table-striped table-hover">
 	<thead class = "thead-light">
 			<tr class="table-primary">
-				<td>기안일</td>
-				<td>문서제목</td>
 				<td>문서번호</td>
+				<td>문서제목</td>
 				<td>문서상태</td>
+				<td>기안일</td>
+				<td>문서이름</td>
 			</tr>
 	</thead>
 			<c:set var="list" value="${pb.list}"/>
 			<c:forEach var="b" items="${list}" >
 			<%-- <c:forEach begin="1" end="${b.level}">▷</c:forEach> --%>
-		<tr>
-								<td>${b.start_date}</td>
-								<td>${b.doc_title}</td>
+		<tr>					
 								<td>${b.doc_num}</td>
-							    <td>${b.doc_state}</td>
+								<td>${b.doc_title}</td>
+								<td>${b.doc_state}</td>
+								<td>${b.start_date}</td>
+							    <td>${b.doc_kindvo.doc_name}</td>
 		</tr>
 			</c:forEach>
 	</table>
+	
+		
 	
 <div class="pagination">
  <c:set var="startPage" value="${pb.startPage}"/>
@@ -99,7 +101,7 @@ $(function(){
 			page=${pb.endPage}+1;
 		}else{
 			page = $(this).text();
-			location.href="mygjoklist.do?page="+page;
+			location.href="gjexpectlist.do?page="+page;
 		}
 		
 		return false;
