@@ -239,10 +239,15 @@
 			</tr>
 		</table>
 		<div class="modal-footer">
+<<<<<<< HEAD
+		
+			<input type="submit" value="추가" class="btn btn-default addschedule">
+=======
 			
 			<input type="submit" value="추가" class="btn btn-default addschedule">
 			<input type="submit" value="수정" class="btn btn-default editschedule">
 			<input type="submit" value="삭제" class="btn btn-default delschedule">
+>>>>>>> 6dd31254b48d465a1199e5e8dc207860b47ea0ac
 			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 		</div>
 		</form>
