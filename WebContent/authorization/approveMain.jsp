@@ -6,7 +6,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-/* 	 $(function(){
+ 	  /* $(function(){
 	 $.ajax({
 	 url:"../doclist.do",
 	 method:'post',
@@ -15,8 +15,8 @@
 	 }
 	 }); 
 	 return false;
-	 });
- */
+	 });  */
+ 
 	 
 </script>
 <div id="list"></div>
@@ -24,6 +24,7 @@
 	<p>
 	<h2>전자결재</h2>
 	<h4>결재대기문서</h4>
+<!-- 	수정 필요함 -->
 	
 	<table class="table table-border">
 	<tr>
@@ -38,7 +39,7 @@
 								<td>${doc.doc_title}</td>
 								<td>${doc.doc_num}</td>
 								<td>${doc.doc_state}</td>
-							<%-- <td>${doc.doc_kindvo.doc_name}</td> --%>
+							
 					</tr>
 	</table>
 	
@@ -63,13 +64,9 @@
 								<td>${doc.doc_title}</td>
 								<td>${doc.doc_num}</td>
 								<td>${doc.doc_state}</td>
-								<%-- </tr>
-								<c:forEach var="doc2" items ="${doc.doc_kindvo}">
-								
-								<td>${doc2.doc_name}</td>
-								
-								</c:forEach> --%>
-					</tr>
+								<%-- <c:forEach var="doc2" items ="${doc.doc_kindvo}"> --%>
+								<td>${doc.doc_kindvo.doc_name}</td>
+							<%-- 	</c:forEach> --%>
 				</c:forEach>
 				</table>
 	
@@ -88,13 +85,13 @@
 					</tr>
 					
 					<c:forEach var="doc2" items="${list2}">
-					<%--  	 <c:set var="dockind" value="${requestScope.docvo_list.kindlist}"/> --%>
+					
 					<tr>
 								<td>${doc2.start_date}</td>
 								<td>${doc2.doc_title}</td>
 								<td>${doc2.doc_num}</td>
 							    <td>${doc2.doc_state}</td>
-								<%-- <td>${dockind.doc_name}</td> --%>
+								<td>${doc2.doc_kindvo.doc_name}</td>
 					</tr>
 					</c:forEach>
 					
@@ -129,6 +126,10 @@ button {
 	margin: 4px 2px;
 	cursor: pointer;
 }
+h4{
+	background-color: #337ab7; /* Green */
+	color: white;
+	}
 </style>
 
 <script>

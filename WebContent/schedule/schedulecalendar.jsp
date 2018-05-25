@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<meta charset='utf-8' />
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../container/header.jsp"%>
-
+		
 <style>
 body {
 	margin: 0;
@@ -12,18 +12,13 @@ body {
 }
 
 .articleTop {
-	padding-top: 15;
+	padding-top:15px;
 }
 
 #calendar {
 	/* max-width: 800px; */
 	margin: 0 auto;
 }
-
-.articleTop>#print {
-	float: right;
-}
-
 .articleTop>#print {
 	float: right;
 }
@@ -31,40 +26,70 @@ body {
 .articleTop>#add {
 	float: right;
 }
+
+div>.date {
+	width: 130px;
+}
+
+.text {
+	width: 450px;
+	height: 170px;
+}
+
+td {
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+select.sp {
+	width: 100px;
+	height: 25px;
+}
+#testDatepicker , #testDatepicker2{
+	padding-bottom: 5px;
+}
 </style>
+
 <div class="articleTop">
-	<i class="fa fa-calendar-check-o" style="font-size: 25px"></i>
+	<i class="fa fa-calendar-check-o" style="font-size: 22px"></i>
 	<button class="btn btn-default" id="print">인쇄</button>
-	<a href="scheduleadd.jsp" class="btn btn-default" data-toggle="modal"
-		data-target="#myModal" id="add">일정추가</a>
+	<button  class="btn btn-default" data-toggle="modal"
+		data-target="#myModal" id="add">일정추가</button>
 
-	<div id="myModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- Content will be loaded here from "scheduleform1.html" file -->
-			</div>
-		</div>
-
-	</div>
 </div>
 
 <hr>
 <div id='calendar'></div>
-<script>
-	
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h4>일정추가</h4>
+				</div>
+				<%@include file="scheduleadd.jsp"%> <%-- modal body 부분.--%>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+
 	//개인일정,회사일정 articleTop 부분 글씨
 	//인쇄버튼 클릭이벤트
 	$(function(){
 		<%String listText = (String) request.getParameter("list").trim();%>  <!-- 받아온 listText는 개인일정,부서일정 ~~이라는 TEXT -->
 		$('div.articleTop >i').text('<%=listText%>');
+		if('<%=listText%>' == '전체일정'){
+			$("#add").hide();
+		}
+		
 		$("#print").click(function() {
 			window.print();
 		});
-		
-		
-		
 	});
-		
+	
 	//달력 부분 function
 	jQuery(document)
 			.ready(
@@ -194,11 +219,13 @@ body {
 										    },
 
 										    /* 모든 일정들 */
-											events: function(start, end, timezone, callback) {
+											events: 
+												
+												function(start, end, timezone, callback) {
 												  var schTypeObj = $('div.articleTop >i').text();
 												  if(schTypeObj =='개인일정'){ /* 개인일정 눌렀을 때는 개인일정만 뜰 수 있도록 설정 */
 												    $.ajax({
-												      url: '../schpersonal.do',
+												      url: '${pageContext.request.contextPath}/schpersonal.do',
 												      dataType: 'json',
 												      data: {
 												        start: start.unix(),
@@ -238,7 +265,7 @@ body {
 												    });
 												}else if(schTypeObj =='부서일정'){
 													$.ajax({
-													      url: '../schdept.do',
+													      url: '${pageContext.request.contextPath}/schdept.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),
@@ -258,6 +285,7 @@ body {
 															            title: sc.title,
 															            start: sc.startdate,
 															            color : "#ff9000",
+															            
 															            description: "[일정상세]  "+contents
 														         	 });
 													        	}else{
@@ -278,7 +306,7 @@ body {
 													    });
 												}else if(schTypeObj == '회사일정'){
 													$.ajax({
-													      url: '../schcpn.do',
+													      url: '${pageContext.request.contextPath}/schcpn.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),
@@ -318,7 +346,7 @@ body {
 													    });
 												}else if(schTypeObj == '전체일정'){
 													$.ajax({
-													      url: '../schtotal.do',
+													      url: '${pageContext.request.contextPath}/schtotal.do',
 													      dataType: 'json',
 													      data: {
 													        start: start.unix(),
@@ -454,13 +482,91 @@ body {
 
 										});
 					});
+	
+	
+	//modal 이벤트
+	$(function() {
+		
+		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
+		var codeStringObj = $('div.articleTop>i').text();
+		console.log(codeStringObj);
+		var codeIntObj;
+		if(codeStringObj =='개인일정'){
+			codeIntObj = '0';
+		}else if(codeStringObj =='부서일정'){
+			codeIntObj = '1';
+		}else if(codeStringObj =='회사일정'){
+			codeIntObj = '2';
+		}
+		console.log(codeIntObj);
+		$('#code').val(codeIntObj);
+		
+		
+		
+		$("#testDatepicker").datepicker({
+			showOn : "both",
+			dateFormat : "yy-mm-dd"
+		});
+		$("#testDatepicker2").datepicker({
+			showOn : "both",
+			dateFormat : "yy-mm-dd"
+		});
+
+
+		$('input:radio[name=repeatbl]').change(function() {
+			var radioValue = $(this).val();
+			if (radioValue == "Y") {
+				$('#repeatok').show();
+			} else if (radioValue == "N") {
+				$('#repeatok').hide();
+			}
+
+		});
+		$('input:radio[name=repeatterm]').change(function() {
+			var radioValue = $(this).val();
+			if(radioValue =="1" ){
+				$('#weekcheck').show();
+				$('#dayinput').hide();	
+			}else{
+				$('#dayinput').hide();
+				$('#weekcheck').hide();
+				
+			}
+			
+		});
+		  $('form#addsc').submit(function(){
+			  $.ajax({
+				  url:'${pageContext.request.contextPath}/schadd.do',
+				  method:'post',
+				  data:$('form').serialize(),
+				  success:function(data){
+					  if(data.trim() == '1'){ //일정추가 성공
+					  	  //일정추가가 성공하면 개인일정 탭을 누른것과 같은 효과.
+					  	  if(codeStringObj == '개인일정'){
+						 	 var $triggerObj = $("li.schedule>a#schperson");
+					  	  }else if(codeStringObj == '부서일정'){
+					  		$triggerObj = $("li.schedule>a#schdept");
+					  	  }else if(codeStringObj == '회사일정'){
+					  		$triggerObj = $("li.schedule>a#schcompany");  
+					  	  }else if(codeStringObj == '전체일정'){
+					  		$triggerObj = $("li.schedule>a#schtotal");
+					  	  }
+					     $('#myModal').modal('toggle');
+				  		 $triggerObj.trigger('click');
+					  
+					  }else if(data.trim() == '-1'){ //일정추가 실패
+						 alert('일정추가 실패'); 
+					  }
+				  }
+			  });
+			  
+			  return false;
+		  });
+
+	});
 	var className = 'schedule';
 	$('div#menutab li.'+className).addClass('active');
 	console.log($('div#menutab li.'+className));
 	$('ul#side-menu').find('li.' + className).show();
-	
-	
-	
 </script>
 <%@include file="../container/footer.jsp"%>
-

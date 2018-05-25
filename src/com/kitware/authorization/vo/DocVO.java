@@ -14,10 +14,8 @@ public class DocVO {
 	private String coper_dept;
 	private String refer;
 	private List<DocDetailVO> doc_detail;
-	private List<DocGiganVO> doc_gigan;
-	private List<DocKindVO> doc_kindvo;
-	
-	
+	private DocGiganVO doc_gigan;
+	private DocKindVO doc_kindvo;
 
 	public DocVO() {
 		super();
@@ -35,7 +33,7 @@ public class DocVO {
 	
 	public DocVO(String doc_num, int doc_kind, String emp_num, String doc_state, String doc_title, String doc_content,
 			String start_date, String rcv_dept, String coper_dept, String refer, List<DocDetailVO> doc_detail,
-			List<DocGiganVO> doc_gigan, List<DocKindVO> doc_kindvo) {
+			DocGiganVO doc_gigan, DocKindVO doc_kindvo) {
 		super();
 		this.doc_num = doc_num;
 		this.doc_kind = doc_kind;
@@ -142,19 +140,19 @@ public class DocVO {
 		this.doc_detail = doc_detail;
 	}
 
-	public List<DocGiganVO> getDoc_gigan() {
+	public DocGiganVO getDoc_gigan() {
 		return doc_gigan;
 	}
 
-	public void setDoc_gigan(List<DocGiganVO> doc_gigan) {
+	public void setDoc_gigan(DocGiganVO doc_gigan) {
 		this.doc_gigan = doc_gigan;
 	}
 
-	public List<DocKindVO> getDoc_kindvo() {
+	public DocKindVO getDoc_kindvo() {
 		return doc_kindvo;
 	}
 
-	public void setDoc_kindvo(List<DocKindVO> doc_kindvo) {
+	public void setDoc_kindvo(DocKindVO doc_kindvo) {
 		this.doc_kindvo = doc_kindvo;
 	}
 
@@ -164,6 +162,11 @@ public class DocVO {
 				+ doc_state + ", doc_title=" + doc_title + ", doc_content=" + doc_content + ", start_date=" + start_date
 				+ ", rcv_dept=" + rcv_dept + ", coper_dept=" + coper_dept + ", refer=" + refer + ", doc_detail="
 				+ doc_detail + ", doc_gigan=" + doc_gigan + ", doc_kindvo=" + doc_kindvo + "]";
+	}
+
+	public void setDoc_kindvo(List<DocKindVO> kindlist) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

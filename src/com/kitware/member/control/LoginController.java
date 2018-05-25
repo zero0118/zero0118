@@ -41,7 +41,7 @@ public class LoginController implements Controller {
 			throws ServletException, IOException {
 		String idValue = request.getParameter("id");
 		String pwdValue = request.getParameter("pwd");
-		
+		String pathValue = request.getContextPath();
 		HttpSession session = request.getSession();
 		session.invalidate();
 		

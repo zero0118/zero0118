@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../container/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script>
+</script>
 <c:set var="pb" value="${requestScope.pagebean }"/> 
 <div id="div1"></div>
 <div class="container">
 	<div>&nbsp;</div>
-	<h2>기안 문서함</h2>
+	<h2>완료 문서함</h2>
 	<div>&nbsp;</div>
 	<table class="table table-striped table-hover">
 	<thead class = "thead-light">
@@ -28,8 +30,13 @@
 		</tr>
 			</c:forEach>
 	</table>
-	
-		
+	<!-- <div class="text-center">
+		<button type="button">1</button>
+		<button type="button">2</button>
+		<button type="button">3</button>
+		<button type="button">4</button>
+		<button type="button">5</button>
+	</div> -->
 	
 <div class="pagination">
  <c:set var="startPage" value="${pb.startPage}"/>
@@ -99,7 +106,7 @@ $(function(){
 			page=${pb.endPage}+1;
 		}else{
 			page = $(this).text();
-			location.href="gjwaitlist.do?page="+page;
+			location.href="gjoklist.do?page="+page;
 		}
 		
 		return false;

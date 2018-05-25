@@ -11,6 +11,7 @@ public class SchDMLService {
 	public SchDMLService() {
 
 	}
+	
 	public static SchDMLService getInstance() {
 		if (service == null) {
 			service = new SchDMLService();
@@ -19,6 +20,6 @@ public class SchDMLService {
 	}
 	
 	public void scheduleinput(Schedule schedule) throws Exception{
-		
+		dao.insertSchedule(schedule);
 	}
 }

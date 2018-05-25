@@ -33,10 +33,7 @@ public class DocListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*String idVal = request.getParameter("id");*/
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
+		String pathValue = request.getContextPath();
 		try {
 			List<DocVO> docvo_list = service.findIng("kim"); //id 들어가야함 지금은 임시값 kim
 			System.out.println("docvo_list size:"+docvo_list.size());
@@ -51,7 +48,7 @@ public class DocListController implements Controller {
 			e.printStackTrace();
 		}
 		
-		String forwardURL = "authorization/approveMain.jsp";
+		String forwardURL = "/authorization/approveMain.jsp";
 		return forwardURL;
 	}
 

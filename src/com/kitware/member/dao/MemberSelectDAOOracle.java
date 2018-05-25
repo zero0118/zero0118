@@ -53,12 +53,10 @@ public class MemberSelectDAOOracle implements MemberSelectDAO{
 				mb.setTel3(rs.getString("TEL3"));
 				
 				GradeInfo gi = new GradeInfo(mb.getPosition_num(),rs.getString("POSITION_NAME"));
-				gradeList.add(gi);
-				mb.setGradeinfo(gradeList);
+				mb.setGradeinfo(gi);
 				
 				DeptInfo di = new DeptInfo(mb.getDept_num(),rs.getString("DEPT_NAME"));
-				deptList.add(di);
-				mb.setDeptinfo(deptList);
+				mb.setDeptinfo(di);
 				return mb;
 			}
 		} catch (SQLException e) {

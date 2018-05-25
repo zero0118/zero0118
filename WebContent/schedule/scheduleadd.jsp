@@ -1,121 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- datepicker js CDN-->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<style>
-div>.date {
-	width: 130px;
-}
-
-.text {
-	width: 450px;
-	height: 170px;
-}
-
-td {
-	padding: 10px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-select.sp {
-	width: 100px;
-	height: 25px;
-}
-</style>
-<script type="text/javascript">
-
-	$(function() {
-		$("#testDatepicker").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-		$("#testDatepicker2").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-
-
-		$('input:radio[name=repeatbl]').change(function() {
-			var radioValue = $(this).val();
-			if (radioValue == "2") {
-				$('#repeatok').show();
-				$('#repeatok2').show();
-			} else if (radioValue == "1") {
-				$('#repeatok').hide();
-				$('#repeatok2').hide();
-			}
-
-		});
-		$('input:radio[name=repeatterm]').change(function() {
-			var radioValue = $(this).val();
-			if (radioValue == "1" ) {
-				$('#dayinput').show();	
-				$('#weekcheck').hide();			
-			} else if(radioValue =="2" ){
-				$('#weekcheck').show();
-				$('#dayinput').hide();	
-			}else{
-				$('#dayinput').hide();
-				$('#weekcheck').hide();
-				
-			}
-			
-		});
-		  $('form#addsc').submit(function(){
-			  $.ajax({
-				  url:'schadd.do',
-				  method:'post',
-				  data:$('form').serialize(),
-				  success:function(data){
-					  data = data.trim();
-					  if(data == '1'){ //글쓰기 성공
-						  alert('글쓰기 성공');
-						 var $triggerObj = $("nav>ul li.board");
-						 $triggerObj.trigger('click');
-					  }else if(data == '-1'){ //글쓰기 실패
-						 alert('글쓰기 실패'); 
-					  }
-				  }
-			  });
-			  return false;
-		  });
-
-
-	});
-</script>
-<!-- datepicker css -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-	type="text/css" />
-</head>
-<body>
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">x</button>
-		<h4>일정추가</h4>
-	</div>
-
-
-
-	<div class="modal-body">
-
+    pageEncoding="UTF-8"%>
+<div class="modal-body">
+		<form id="addsc">
 		<table>
 			<tr>
 				<td><label>제목 </label></td>
-				<td><input style="width: 300px" name="title"></td>
+				<td><input style="width: 300px" name="title" autocomplete="off"></td>
 			</tr>
 			<tr>
 				<td><label>일정종류</label></td>
-				<td><select class="sp" name="schsp">
+				<td><select class="sp" name="schtype">
 						<option>업무</option>
 						<option>회의</option>
 						<option>외근</option>
@@ -218,37 +112,7 @@ select.sp {
 					type="checkbox" value="하루종일"></td>
 
 			</tr>
-			<tr>
-				<td><label>반복여부</label></td>
-				<td><input type="radio" name="repeatbl" value="1"
-					checked="checked">비반복 <input type="radio" name="repeatbl"
-					value="2">반복</td>
-			</tr>
-
-			<tr style="display: none" id="repeatok">
-				<td><label>반복주기</label></td>
-				
-				<td><label>일</label><input type="radio" name="repeatterm" value="1"> 
-				<input	style="width: 40px;display:none" name="dayinput" id="dayinput" >  <label>주</label>
-				<input	type="radio" name="repeatterm" value="2"> 
-				
-				<label>월</label>				
-				<input type="radio"	name="repeatterm" value="3">
-				<label>년</label>
-				<input type="radio" name="repeatterm" value="4">
-				<span style="display:none;padding: 5px;background-color:#5882FA" id="weekcheck" >
-				<input	type="checkbox" name="week" id="week1" value="1"><label for="week1">월</label>
-				<input	type="checkbox" name="week" id="week2" value="2"><label for="week2">화</label>
-				<input	type="checkbox" name="week" id="week3" value="3"><label for="week3">수</label>
-				<input	type="checkbox" name="week" id="week4" value="4"><label for="week4">목</label>
-				<input	type="checkbox" name="week" id="week5" value="5"><label for="week5">금</label>
-				<input	type="checkbox" name="week" id="week6" value="6"><label for="week6">토</label>
-				<input	type="checkbox" name="week" id="week7" value="7"><label for="week7">일</label>
-				</span>
-
-				
-			</tr>
-			<tr style="display: none" id="repeatok2">
+			<tr id="repeatok2">
 				<td><label>END</label></td>
 				<td><input type="text" class="date" name="enddate" id="testDatepicker2"
 					value="종료일"> <select name="endhour">
@@ -339,21 +203,45 @@ select.sp {
 						<option>59</option>
 				</select> <label>분</label></td>
 			</tr>
+			<tr style="display:none">
+				<td><label>반복여부</label></td>
+				<td><input type="radio" name="repeatbl" value="N"
+					checked="checked">비반복 <input type="radio" name="repeatbl"
+					value="Y">반복</td>
+			</tr>
+
+			<tr style="display: none" id="repeatok">
+				<td><label>반복주기</label></td>
+				
+				<td>
+				<input style="width: 40px;display:none" name="dayinput" id="dayinput" >
+				<label>주</label>
+				<input type="radio" name="repeatterm" value="1">
+				<label>월</label>				
+				<input type="radio"	name="repeatterm" value="2">
+				<label>년</label>
+				<input type="radio" name="repeatterm" value="3">
+				<span style="display:none;padding: 5px;background-color:#5882FA" id="weekcheck" >
+				<input	type="checkbox" name="week" id="week1" value="1"><label for="week1">월</label>
+				<input	type="checkbox" name="week" id="week2" value="2"><label for="week2">화</label>
+				<input	type="checkbox" name="week" id="week3" value="3"><label for="week3">수</label>
+				<input	type="checkbox" name="week" id="week4" value="4"><label for="week4">목</label>
+				<input	type="checkbox" name="week" id="week5" value="5"><label for="week5">금</label>
+				<input	type="checkbox" name="week" id="week6" value="6"><label for="week6">토</label>
+				<input	type="checkbox" name="week" id="week7" value="7"><label for="week7">일</label>
+				</span>
+
+			</tr>
 			<tr>
 				<td><label>내용</label></td>
-				<td><input class="text" name="contents"></td>
+				<td><textarea autocomplete="off" name="contents" rows="6" cols="50"></textarea></td>
+				<td><input id="code" type="hidden" name="schcode" ></td>
 			</tr>
 		</table>
 		<div class="modal-footer">
-		<form id="addsc">
-			<button type="button" class="btn btn-default">일정추가</button>
-		</form>					
+		
+			<input type="submit" value="추가" class="btn btn-default addschedule">
 			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 		</div>
-
-
-	</div>
-
-
-</body>
-</html>
+		</form>
+		</div>

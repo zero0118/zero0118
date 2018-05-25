@@ -40,18 +40,24 @@
 
 <!-- include summernote css/js 추가두줄-->
 <script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
-<script src="/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../summernote/summernote.css">
+<script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote.css">
 <link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/css/fullcalendar/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/js/fullcalendar/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/js/fullcalendar/fullcalendar.min.js'></script>
-<script type=text/javascript src='../js/fullcalendar/locale/ko.js'></script>
+<script type=text/javascript src='${pageContext.request.contextPath}/js/fullcalendar/locale/ko.js'></script>
 <script src='${pageContext.request.contextPath}/js/fullcalendar/theme-chooser.js'></script>
 <script src='${pageContext.request.contextPath}/js/fullcalendar/gcal.js'></script>
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css'
 	rel='stylesheet'>
+<!-- datepicker js CDN-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+	
+	
 <script>
 	$(function() {
 		$('div#menutab li').click(function() { //상단의 메뉴 버튼을 눌렀을 때 버튼에 따라  1.side menu 변경 , 2.해당 li태그 active 속성. 순서가 중요.
@@ -184,6 +190,12 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
+<!-- datepicker css -->
+		<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+		type="text/css" />		
+	
+	
 <style>
 ul#side-menu>li { /*처음에 sidebar menu 전부다 display none 시킨다.*/
 	display: none;
@@ -210,7 +222,7 @@ div.navbar-header> a.logout{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/home/home.jsp">KIT Ware</a>
 				<a class="navbar-brand logout" href="#">Logout</a>
-				<div class="logininfo">${sessionScope.loginInfo.name} ${sessionScope.loginInfo.gradeinfo[0].position_name} 님 로그인 되었습니다.</div>
+				<div class="logininfo">${sessionScope.loginInfo.name} ${sessionScope.loginInfo.gradeinfo.position_name} 님 로그인 되었습니다.</div>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -245,8 +257,8 @@ div.navbar-header> a.logout{
 						<li class="authorization"><a href="#">개인문서함<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li class = "gian_list"><a href="${pageContext.request.contextPath}/authorization/gj_wait.jsp">기안문서함</a></li>
-								<li class = "gj_list"><a href="#">결재문서함</a></li>
+								<li class = "gian_list"><a href="${pageContext.request.contextPath}/gjwaitlist.do">기안문서함</a></li>
+								<li class = "gj_list"><a href="${pageContext.request.contextPath}/gjoklist.do">결재문서함</a></li>
 							</ul></li>
 						<li class="authorization"><a href="#" id="write">결재문서작성<span
 								class="fa arrow"></span></a>
@@ -259,8 +271,8 @@ div.navbar-header> a.logout{
 								<li class="balju"><a href="${pageContext.request.contextPath}/authorization/balju.jsp">발주신청</a></li>
 							</ul></li>
 						
-						<li class="schedule"><a href="#">개인일정</a> <a href="#">부서일정</a>
-							<a href="#">회사일정</a> <a href="#">전체일정</a></li>
+						<li class="schedule"><a href="#" id="schperson">개인일정</a> <a href="#" id="schdept">부서일정</a>
+							<a href="#" id="schcompany">회사일정</a> <a href="#" id="schtotal">전체일정</a></li>
 
 						<li class="attendance"><a href="#">내 근태 현황<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">

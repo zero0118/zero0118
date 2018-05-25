@@ -13,7 +13,7 @@ import com.kitware.authorization.vo.PageBean;
 
 
 public class DocGJWaitController {
-	private DocSelectService service = new DocSelectService();
+	private DocSelectService service = new DocSelectService();	
 	
 	public DocGJWaitController() {
 		super();
@@ -39,6 +39,7 @@ public class DocGJWaitController {
 		int intPage=1;
 		if(page != null) {
 			intPage = Integer.parseInt(page);
+			System.out.println("페이지가져온거"+page);
 		}
 		try {
 			//게시물 총목록수
@@ -65,12 +66,15 @@ public class DocGJWaitController {
 			pb.setEndPage(endPage); //끝페이지
 			
 			request.setAttribute("pagebean", pb);
+			System.out.println(list.size());
+			System.out.println(pb.getList());
+			System.out.println("intpage:"+intPage);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("result", e.getMessage());
 		}
-		String forwardURL = "gj_wait.jsp";
+		String forwardURL = "/authorization/gj_wait.jsp";
 		return forwardURL;
 	}
 }

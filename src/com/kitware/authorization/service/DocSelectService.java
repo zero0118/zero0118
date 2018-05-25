@@ -21,11 +21,18 @@ public class DocSelectService {
 		return dao.selectIng("kim");
 	}
 	public List<DocVO> findIng(String id, int page) throws Exception{
+		System.out.println("service"+dao.selectIng("kim", page));
 		return dao.selectIng("kim", page);
+
 	}
 
 	public List<DocVO> findOk(String id) throws Exception {
+		System.out.println(dao.selectOk("kim"));
 		return dao.selectOk("kim");
+	}
+	
+	public List<DocVO> findOk(String id, int page) throws Exception {
+		return dao.selectOk("kim", page);
 	}
 
 	public DocSelectService() {
