@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../container/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-</script>
+<c:set var="session" value="${sessionScope.loginInfo}"></c:set>		
 <c:set var="pb" value="${requestScope.pagebean }"/> 
 <div id="div1"></div>
 <div class="container">
@@ -35,15 +34,13 @@
  <c:set var="startPage" value="${pb.startPage}"/>
  <c:set var="endPage" value="${pb.endPage}"/>
  <c:if test="${startPage > 1}">  
-  <Button>&laquo;</Button>
+  <Button>이전</Button>
  </c:if>
- <div class="text-center">
  <c:forEach begin="${startPage}" end="${endPage}" var="i" >  
   <button type="button">${i}</button>	  
  </c:forEach> 
- </div>
  <c:if test="${endPage < pb.totalPage}" >  
-  <Button>&laquo;</Button> 
+  <Button>다음</Button> 
   </c:if>
 </div> 
 </div>
@@ -89,17 +86,21 @@ thead{
 }
 </style>
 
+<c:set var="prePage" value="${requestScope.prePage}"/> 
+<c:set var="nextPage" value="${requestScope.nextPage}"/> 
 <script>
 $(function(){
 	$('.pagination button').click(function(){
 		var page;
-		if($(this).text() == '«'){
-			page=${pb.startPage}-1;
-		}else if($(this).text() == '»'){
-			page=${pb.endPage}+1;
+		if($(this).text() == '이전'){
+			page=${prePage};
+			location.href="gjoklist.do?page="+page;
+		}else if($(this).text() == '다음'){
+			page=${nextPage};
+			location.href="gjoklist.do?page="+page;
 		}else{
 			page = $(this).text();
-			location.href="mygjoklist.do?page="+page;
+			location.href="gjoklist.do?page="+page;
 		}
 		
 		return false;
