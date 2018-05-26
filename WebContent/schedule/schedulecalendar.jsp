@@ -49,20 +49,6 @@ select.sp {
 #testDatepicker , #testDatepicker2{
 	padding-bottom: 5px;
 }
-
-td {
-	padding: 10px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-select.sp {
-	width: 100px;
-	height: 25px;
-}
-#testDatepicker , #testDatepicker2{
-	padding-bottom: 5px;
-}
 /* input.editschedule , input.delschedule{
 	display:none;
 } */
@@ -73,7 +59,6 @@ select.sp {
 	<button class="btn btn-default" id="print">인쇄</button>
 	<button class="btn btn-default" data-toggle="modal"
 		data-target="#myModal" id="add">일정추가</button>
-</div>
 </div>
 
 <hr>
@@ -89,7 +74,6 @@ select.sp {
 				<%@include file="scheduleadd.jsp"%> <%-- modal body 부분.--%>
 			</div>
 		</div>
-
 	</div>
 
 	<script>
@@ -476,88 +460,6 @@ select.sp {
 			$("div.modal-footer>input").hide();
 			$("div.modal-footer>input.addschedule").show();
 		});
-		
-		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
-		var codeStringObj = $('div.articleTop>i').text();
-		console.log(codeStringObj);
-		var codeIntObj;
-		if(codeStringObj =='개인일정'){
-			codeIntObj = '0';
-		}else if(codeStringObj =='부서일정'){
-			codeIntObj = '1';
-		}else if(codeStringObj =='회사일정'){
-			codeIntObj = '2';
-		}
-		console.log(codeIntObj);
-		$('#code').val(codeIntObj);
-		
-		
-		
-		$("#testDatepicker").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-		$("#testDatepicker2").datepicker({
-			showOn : "both",
-			dateFormat : "yy-mm-dd"
-		});
-
-
-		$('input:radio[name=repeatbl]').change(function() {
-			var radioValue = $(this).val();
-			if (radioValue == "Y") {
-				$('#repeatok').show();
-			} else if (radioValue == "N") {
-				$('#repeatok').hide();
-			}
-
-		});
-		$('input:radio[name=repeatterm]').change(function() {
-			var radioValue = $(this).val();
-			if(radioValue =="1" ){
-				$('#weekcheck').show();
-				$('#dayinput').hide();	
-			}else{
-				$('#dayinput').hide();
-				$('#weekcheck').hide();
-				
-			}
-			
-		});
-		  $('form#addsc').submit(function(){
-			  $.ajax({
-				  url:'${pageContext.request.contextPath}/schadd.do',
-				  method:'post',
-				  data:$('form').serialize(),
-				  success:function(data){
-					  if(data.trim() == '1'){ //일정추가 성공
-					  	  //일정추가가 성공하면 개인일정 탭을 누른것과 같은 효과.
-					  	  if(codeStringObj == '개인일정'){
-						 	 var $triggerObj = $("li.schedule>a#schperson");
-					  	  }else if(codeStringObj == '부서일정'){
-					  		$triggerObj = $("li.schedule>a#schdept");
-					  	  }else if(codeStringObj == '회사일정'){
-					  		$triggerObj = $("li.schedule>a#schcompany");  
-					  	  }else if(codeStringObj == '전체일정'){
-					  		$triggerObj = $("li.schedule>a#schtotal");
-					  	  }
-					     $('#myModal').modal('toggle');
-				  		 $triggerObj.trigger('click');
-					  
-					  }else if(data.trim() == '-1'){ //일정추가 실패
-						 alert('일정추가 실패'); 
-					  }
-				  }
-			  });
-			  
-			  return false;
-		  });
-
-	});
-	
-	
-	//modal 이벤트
-	$(function() {
 		
 		//개인일정,부서일정,회사일정,전체일정을 숨겨진 input에 담는다.
 		var codeStringObj = $('div.articleTop>i').text();

@@ -11,7 +11,7 @@
 		var className = '<%=request.getParameter("page")%>';
 		
 		if(className=='schedule'){
-			location.href="${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인�정";
+			location.href="${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인일정";
 		}
 		else if(className=='authorization'){
 			location.href="${pageContext.request.contextPath}/doclist.do";
@@ -20,7 +20,7 @@
 			location.href="${pageContext.request.contextPath}/attendance/mymonth.jsp";
 		}
 		else if(className=='board'){
-			location.href="${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인�정";
+			location.href="${pageContext.request.contextPath}/schedule/schedulecalendar.jsp?list=개인일정";
 		}
 		else if(className=='home'){
 			location.href="${pageContext.request.contextPath}/home/home.jsp";
