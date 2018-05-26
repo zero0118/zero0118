@@ -252,13 +252,13 @@ div.navbar-header> a.logout{
 							<ul class="nav nav-second-level">
 								<li class = "gj_wait"><a href="#">결재대기</a></li>
 								<li class = "gj_exp"><a href="${pageContext.request.contextPath}/gjexpectlist.do">결재예정</a></li>
-								<li clsss = "gj_ok"><a href="${pageContext.request.contextPath}/mygjoklist.do">결재완료</a></li>
+								<li clsss = "gj_ok"><a href="${pageContext.request.contextPath}/gjoklist.do">결재완료</a></li>
 							</ul></li>
 						<li class="authorization"><a href="#">개인문서함<span
 								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li class = "gian_list"><a href="${pageContext.request.contextPath}/gjwaitlist.do">기안문서함</a></li>
-								<li class = "gj_list"><a href="${pageContext.request.contextPath}/gjoklist.do">결재문서함</a></li>
+								<li class = "gj_list"><a href="${pageContext.request.contextPath}/mygjoklist.do">결재문서함</a></li>
 							</ul></li>
 						<li class="authorization"><a href="#" id="write">결재문서작성<span
 								class="fa arrow"></span></a>

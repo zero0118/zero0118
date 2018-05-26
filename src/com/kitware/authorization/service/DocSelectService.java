@@ -15,31 +15,31 @@ public class DocSelectService {
 		return dao.selectCount();
 	}
 
-	public List<DocVO> findIng(String id) throws Exception {
-		System.out.println(dao.selectIng("kim"));
-		return dao.selectIng("kim");
+	public List<DocVO> findIng(String emp_num) throws Exception {
+		System.out.println(dao.selectIng(emp_num));
+		return dao.selectIng(emp_num, 1);
 	}
-	public List<DocVO> findIng(String id, int page) throws Exception{
-		System.out.println("service"+dao.selectIng("kim", page));
-		return dao.selectIng("kim", page);
+	public List<DocVO> findIng(String emp_num, int page) throws Exception{
+		System.out.println("service"+dao.selectIng(emp_num, page));
+		return dao.selectIng(emp_num, page);
 
 	}
 
-	public List<DocVO> findOk(String id) throws Exception {
-		System.out.println(dao.selectOk("kim"));
-		return dao.selectOk("kim");
+	public List<DocVO> findOk(String emp_num) throws Exception {
+		System.out.println(dao.selectOk(emp_num));
+		return dao.selectOk(emp_num, 1);
 	}
 	
-	public List<DocVO> findOk(String id, int page) throws Exception {
-		return dao.selectOk("kim", page);
+	public List<DocVO> findOk(String emp_num, int page) throws Exception {
+		return dao.selectOk(emp_num, page);
 	}
 	
 	public List<DocVO> selectExpected(String conf_num, int page) throws Exception{
-		return dao.selectExpected("3", page);
+		return dao.selectExpected(conf_num, page);
 		
 	}
 	public List<DocVO> selectGJOk(String conf_num, int page) throws Exception{
-		return dao.selectGJOk("3", page);
+		return dao.selectGJOk(conf_num, page);
 		
 	}
 
