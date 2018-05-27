@@ -24,6 +24,9 @@
 		}
 		else if(className=='home'){
 			location.href="${pageContext.request.contextPath}/home/home.jsp";
+		}
+		else if(className=='addmember'){
+			location.href="${pageContext.request.contextPath}/modmember/addmember.jsp";
 		}else{
 			 location.href=className+"/"+className+".jsp"; 
 		}
