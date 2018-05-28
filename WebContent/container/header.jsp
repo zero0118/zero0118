@@ -93,7 +93,7 @@
 				location.href='${pageContext.request.contextPath}/home/home.jsp';
 				break;
 			case 'modmember' :
-				location.href='${pageContext.request.contextPath}/modmember/addmember.jsp';
+				location.href='${pageContext.request.contextPath}/modmember/memberstatus.jsp';
 				break;
 			
 			} 
@@ -162,6 +162,17 @@
 				}
 			});
 		});
+		/*  $('.nav>li.memberstatus').click(function() {
+			//var form = $('#write>li').attr('class');
+			$.ajax({
+				method : 'POST',
+				url : '${pageContext.request.contextPath}/modmember/memberstatus.jsp',
+				success : function(data) {
+					$('div#page-wrapper').empty();
+					$('div#page-wrapper').html(data);
+				}
+			});
+		});  */
 		
 		
 		//로그아웃 버튼 누른다.
@@ -244,7 +255,7 @@ div.navbar-header> a.logout{
 					<li class="board"><a href="#4" data-toggle="tab"><i
 							class="fa fa-bars"></i>게시판</a></li>
 					<li class="modmember"><a href="#5" data-toggle="tab"><i
-					 class="fa fa-bars"></i>관리자</a></li>
+					        class="fa fa-bars"></i>관리자</a></li>
 					<!-- ***추가됨 -->
 				</ul>
 
@@ -294,11 +305,11 @@ div.navbar-header> a.logout{
 								<li><a href="#">부서공지</a></li>
 
 							</ul></li>
-						<li class="modmember1"><a href=#>회원관리<span class="fa arrow"></span></a>
+						<li class="modmember"><a href="#5">회원관리<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">사원관리</a></li>
-								<li><a href="#">사원추가</a></li>
-								<li><a href="#">사원정보수정</a></li>
+								<li class="memberstatus"><a href="${pageContext.request.contextPath}/modmember/memberstatus.jsp">사원관리</a></li>
+								<li class="addmember"><a href="${pageContext.request.contextPath}/modmember/addmember.jsp">사원추가</a></li>
+								<li class="modifymem"><a href="#">사원정보수정</a></li>
 							</ul></li>
 					</ul>
 				</div>

@@ -71,7 +71,7 @@ div.hover:hover {
 			<div class="hover effect1" id="schedule">일정관리</div>
 			<div class="hover effect1" id="notice">공지사항</div>
 			<div class="hover effect1" id="board">게시판</div>
-			<div class="hover effect1" id="addmember">회원관리</div>
+			<div class="hover effect1" id="modmember">관리자</div>
 			
 		</div>
 	</center>
