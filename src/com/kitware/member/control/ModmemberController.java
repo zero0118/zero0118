@@ -97,7 +97,7 @@ public class ModmemberController implements Controller {
 		e.printStackTrace();
 		request.setAttribute("result", -1);
 	}
-	String forwardURL = "modmemberresult.jsp";		
+	String forwardURL = "modmember/modmemberresult.jsp";		
 	return forwardURL;
 	}
 

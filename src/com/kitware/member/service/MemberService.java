@@ -35,6 +35,7 @@ public class MemberService {
 	
 	public void modmembers(Members members )  throws Exception{
 		dao.insertMembers(members);
+		
 	}
 
 	public void modmemberDetail(MembersDetailInfo mdetail) throws Exception{

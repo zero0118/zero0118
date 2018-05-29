@@ -21,7 +21,7 @@
 				success : function(data) {
 					data = data.trim();
 					if (data == '1') {
-						alert('사원추가완료');
+						alert('정보수정완료');
 						location.href="memberstatus.jsp";
 					} else if (data == '-1') {
 						alert('입력실패');
@@ -46,7 +46,7 @@
 
 
 <body>
-<h2>사원추가</h2>
+<h2>사원정보수정</h2>
 	<form id=modmember>
 		<table>
 			<tr>
